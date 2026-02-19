@@ -1,0 +1,97 @@
+
+.card {
+  position: relative;
+  width: 400px;
+  height: 160px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  box-shadow: 0 2px 7px #7575756e;
+  border-radius: 7px;
+  padding: 10px 45px 5px 10px;
+  background-color: rgba(255, 255, 255, 0.3);
+}
+.card.green { border-left: 7px solid #00a700; }
+.card.yellow { border-left: 7px solid #d5ec00; }
+.card.red { border-left: 7px solid #a70000; }
+
+.card h3 {
+  color: #1a1a1a;
+
+}
+
+.text { 
+  height: 70px;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 3;
+  line-clamp: 3;
+  overflow: hidden;
+}
+
+.card p {
+  color: #1a1a1a;
+}
+
+.wrapperStateCard {
+  width: 100%;
+  padding-inline-end: 30px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  /* background-color: red; */
+  position: absolute;
+  left: 10px;
+  bottom: 10px; 
+}
+
+.wrapperStateCard .colorCard {
+  padding-inline: 15px;
+  border-radius: 7px;
+  color: #fff;
+}
+.wrapperStateCard .colorCard.green { background-color: #1fbe1f; }
+.wrapperStateCard .colorCard.yellow { background-color: #d5ec00; }
+.wrapperStateCard .colorCard.red { background-color: #f03939; }
+
+.card .dateTime { 
+  height: 20px;
+  color: #3b3b3b;
+  display: flex;
+  align-items: flex-end;
+  gap: 5px;
+  line-height: 1;
+}
+
+.card .dateTime .date-time-icon {
+  position: relative;
+  left: 0;
+  bottom: 2px;
+}
+
+
+.more-buttons {
+  width: 70px;
+  height: 27px;
+  background-color: rgba(255, 255, 255, 0.2);
+  display: flex;
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  border-radius: 7px;
+  box-shadow: 0 2px 5px #7575756e;
+}
+.more-buttons button {
+  width: 100%;
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+  transition: .1s ;
+}
+.more-buttons button:hover { background-color: rgba(255, 255, 255, 0.4); }
+
+.show-more {
+  height: 100%;
+  font-size: 16px;
+  border-left: 1px solid #000;
+}

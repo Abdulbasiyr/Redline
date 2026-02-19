@@ -1,0 +1,211 @@
+
+
+.profileContainer .settings {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-around;
+  gap: 10px;
+  transition: .5s;
+  transform: translateX(100%);
+  opacity: 0;
+}
+.profileContainer.settings .settings {
+ transform: translateX(0); opacity: 1;
+
+  width: 100%;
+  height: 100%;
+}
+
+.settingsTitle {
+  width: 100%;
+  height: 40px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.4);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 17px;
+  font-weight: bold;
+  color: #fff;
+}
+
+.settings .account__settings {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  font-size: 15px;
+  padding-inline: 10px;
+}
+.settings .account__settings h3 { font-size: 16px; }
+.settings .account__settings span { margin-left: 7px; }
+.settings .account__settings .name, .settings .account__settings .editName {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  gap: 5px;
+}
+
+.settings .account__settings .editName input{
+  height: 20px;
+  margin: 0;
+  border-radius: 0;
+  padding: 10px;
+}
+
+.settings .account__settings .editName  .saveEditName {
+  width: 50px;
+  height: 20px;
+  border: none;
+  transition: .1s;
+  background-color: transparent;
+  border-radius: 2px;
+  padding: 10px 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+}
+
+.settings .account__settings .name button {
+  width: 30px;
+  height: 20px;
+  background-color: transparent;
+  border: none;
+  border-radius: 3px;
+  cursor: pointer;
+  transition: .2s;
+}
+
+.settings  .language {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  padding-inline: 10px;
+}
+.settings .language .choose__language {
+  position: relative;
+  width: 100%;
+  height: 35px;
+  border-radius: 4px;
+  background-color: rgba(255, 255, 255, 0.35);
+  box-shadow: 0 0 4px rgba(82, 82, 82, 0.4), inset 0 2px 5px rgba(255, 255, 255, 0.4);
+  backdrop-filter: blur(1px);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  user-select: none;
+}
+.settings .language .choose__language .resultLanguage {
+  padding-inline: 10px;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  cursor: pointer;
+}
+.settings .language .choose__language button {
+  position: absolute;
+  top: 110%;
+  width: 90%;
+  height: 100%;
+  border: none;
+  border-radius: 0;
+  background-color: rgb(255, 255, 255);
+  text-align: left;
+  padding-inline: 10px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 16px;
+}
+
+.settings .startPageWrapper {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  padding-inline: 10px;
+}
+
+.settings .startPageWrapper .startPage {
+  width: 100%;
+  display: flex;
+  background-color: rgba(255, 255, 255, 0.35);
+  box-shadow: 0 0 4px rgba(82, 82, 82, 0.4);
+  border-radius: 10px;
+  overflow: hidden;
+}
+.settings .startPageWrapper .startPage button {
+  width: 100%;
+  height: 30px;
+  border: none;
+  border-radius: 0;
+  background-color: transparent;
+  cursor: pointer;
+  transition: .1s;
+}
+.settings .startPageWrapper .startPage button:hover {
+  background-color: #3e91c2;
+  backdrop-filter: blur(2px);
+  box-shadow: inset 2px 0 5px rgba(255, 255, 255, 0.2);
+  color: #fff;
+}
+.settings .startPageWrapper .startPage button.active {
+  background-color: #3e91c2;
+  backdrop-filter: blur(2px);
+  box-shadow: inset 2px 0 5px rgba(255, 255, 255, 0.2);
+  color: #fff;
+}
+
+.settings .confirmDelete {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  padding-inline: 10px;
+  font-size: 15px;
+}
+
+.settings .confirmDelete .confirmDeleteWrapper {
+  height: 100%;
+  width: 55px;
+  box-shadow: inset 0 0 6px #9b9b9b;
+  border-radius: 10px;
+  padding: 2px;
+  cursor: pointer;
+  transition: .3s;
+}
+
+.settings .confirmDelete .confirmDeleteWrapper .confirmDeleteItem {
+  height: 20px;
+  width: 20px;
+  border-radius: 50%;
+  background-color: #4d9cca;
+  transition: .3s;
+}
+.settings .confirmDelete .confirmDeleteWrapper.active { background-color: #3e91c2; }
+.settings .confirmDelete .confirmDeleteWrapper.active .confirmDeleteItem {
+  transform: translateX(30px);
+  background-color: #fff; 
+}
+
+.settings .saveChanges {
+  width: 100px;
+  height: 33px;
+  position: relative;
+  left: 100px;
+  border: 1px solid rgba(255, 255, 255, 0.35);
+  background-color: #3e91c2;
+  color: #fff;
+  font-size: 15px;
+  box-shadow: inset 0 2px 5px rgba(255, 255, 255, 0.2);
+  cursor: pointer;
+  transition: .1s;
+}
+.settings .saveChanges:active {
+  transform: scale(.95);
+}

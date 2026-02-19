@@ -1,0 +1,105 @@
+
+.authModalContainer {
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.loginAndSign {
+  width: 500px;
+  height: 400px;
+  position: relative;
+  backdrop-filter: blur(5px);
+  border-radius: 10px;
+  display: flex;
+  flex-direction: column;
+  padding: 40px 20px;
+  gap: 20px;
+  box-shadow: 0 5px 10px #535353;
+}
+
+.loginAndSign .title { 
+  text-align: center;
+  color: #00344d;
+}
+
+.wrapper__loginAndSign {
+  height: 100%;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: 10px;
+}
+
+.inputWrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+.inputWrapper input {
+  margin: 0;
+  width: 100%;
+  font-weight: bold;
+}
+
+.inputWrapper .forgotPassword {
+  width: 120px;
+  font-size: 14px;
+  font-weight: bold; 
+  cursor: pointer;
+}
+.inputWrapper .forgotPassword:hover {
+  text-decoration: underline;
+  color: #004ad3;
+}
+
+.googleBtn {
+  width: 100%;
+  height: 40px;
+  border: 1px solid #fff;
+  border-radius: 7px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  font-size: 16px;
+  cursor: pointer;
+  transition: .2s;
+}
+
+.wrapper__loginAndSign .submit {
+  width: 100%;
+  height: 40px;
+  background-color: #0141b9;
+  border: none;
+  font-size: 20px;
+  color: #ffffff;
+  cursor: pointer;
+  box-shadow: 0 5px 7px #002770b2;
+  transition: .1s;
+}
+
+.errorMessage {
+  text-align: center;
+  font-size: 14px;
+  font-weight: bold;
+  color: #ca0000;
+}
+
+.bottomText__loginAndSign {
+  position: absolute;
+  bottom: 5px;
+  left: 140px;
+}
+.bottomText__loginAndSign span { font-size: 14px; }
+
+.bottomText__loginAndSign .moveSign {
+  color: #005f8b;
+  font-weight: bold;
+}
+.bottomText__loginAndSign .moveSign:hover {
+  text-decoration: underline;
+  cursor: pointer;
+}

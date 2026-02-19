@@ -1,0 +1,20 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  width: 100%;
+  min-height: 100vh;
+  background: linear-gradient(rgba(0, 0, 0, 0.1), rgba(0, 0, 0, 0.1) ), url('/bg.png');
+  background-size: cover;
+  background-position: center;
+  padding: 0 100px;
+}
+
+button {
+  border-radius: 7px;
+  transition: .9s;
+}
+button:active { transform: scale(.95); }

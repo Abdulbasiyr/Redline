@@ -1,0 +1,69 @@
+
+
+.showMoreContainer {
+  width: 400px;
+  height: 400px;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  box-shadow: 0 7px 15px #b1b1b1;
+  backdrop-filter: blur(7px);
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  border-radius: 7px;
+  padding: 15px;
+}
+
+.titleMore {
+  text-align: center;
+  color: #fff;
+}
+
+.textMore {
+  width: 100%;
+  height: 290px;
+  border-top: 2px solid #000;
+  border-bottom: 2px solid #000;
+  border-radius: 7px;
+  padding: 5px;
+  overflow-y: auto;
+  scrollbar-width: none;
+  line-height: 25px;
+}
+
+.dateTimeMore {
+  position: absolute;
+  bottom: 5px;
+  left: 10px;
+  font-weight: bold;
+}
+
+.changeButtons {
+  position: absolute;
+  bottom: 5px;
+  right: 10px;
+  display: flex;
+  gap: 10px;
+}
+.changeButtons .btn {
+  width: 50px;
+  height: 30px;
+  border: 2px solid rgb(194, 0, 0);
+  cursor: pointer;
+  transition: .1s;
+  font-weight: bold;
+  font-size: 14px;
+  background-color: transparent;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 5px;
+}
+
+.changeButtons .btn.edit { color: #003fb4; }
+.changeButtons .btn.delete { color: #b40000; }
+
+.close { transition: .1s; }
+.close:active { transform: scale(.94); }

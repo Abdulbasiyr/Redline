@@ -1,0 +1,47 @@
+
+
+generator client {
+  provider   = "prisma-client-js"
+  output     = "../generated/prisma"
+}
+
+
+datasource db {
+  provider = "postgresql"
+}
+
+
+model User {
+  id                  String   @id @default(uuid()) 
+  name                String           @db.VarChar(255)
+  email               String   @unique @db.VarChar(255)
+  passwordHash        String           @db.VarChar(255)
+  createdAt           DateTime @default(now())
+  settings            UserSettings?
+  passwordResetToken  PasswordResetToken[]
+}
+
+model PasswordResetToken {
+  id         String    @id  @default(uuid())
+  userId     String
+  code       String
+  expiresAt  DateTime
+  used       Boolean
+  user       User      @relation(fields: [userId], references: [id])
+}
+
+model UserSettings {
+  userId        String  @id
+  language      String  @default("English") @db.VarChar(255)
+  startPage     String  @default("all")     @db.VarChar(255)
+  confirmDelete Boolean @default(false) 
+  user          User    @relation(fields: [userId], references: [id])
+}
+
+model Task {
+  id     String @id @default(uuid())
+  title  String
+  text   String
+  color  String
+  date   DateTime
+}
