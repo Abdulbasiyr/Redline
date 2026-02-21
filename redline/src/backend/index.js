@@ -56,7 +56,7 @@ app.patch('/api/user/settings', requireAuth, async (req, res) => {
 
 })
 
-app.use('/api/tasks', taskRoutes)
+app.use('/api/tasks', requireAuth, taskRoutes)
 app.post('/api/auth/logout', logout)
 app.post('/api/auth/password-reset/request', rateLimiter, passwordResetRequest )
 app.post('/api/auth/password-reset/verify', confirmCodeLimiter, confirmResetCode)

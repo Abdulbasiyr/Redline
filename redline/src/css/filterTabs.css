@@ -53,25 +53,24 @@
   align-items: center;
   color: #fff;
 }
+.filterCardCount.all { background-color: #0505d1; }
 .filterCardCount.green { background-color: #22c55e; }
 .filterCardCount.yellow { background-color:#dbdb00; }
 .filterCardCount.red { background-color: #d30000; }
 
 /* .menu.active { background-color: #c4c4c4c2; } */
   
-.deadlineButtons {
+.doneAction{
   height: 100%;
-  width: 250px;
+  width: 200px;
   display: flex;
   background-color: rgba(255, 255, 255, 0.2);
   border-radius: 15px;
   box-shadow: 3px 4px 5px #8a8a8a57;
   overflow: hidden;
+  border-radius: 10px;
 }
-.deadlineButtons button.active {
-  background-color: rgba(255, 255, 255, 0.3);
-}
-.deadlineButtons button {
+.doneAction .doneBtn {
   border: none;
   border-radius: 0;
   width: 100%;
@@ -82,39 +81,9 @@
   align-items: center;
   justify-content: center;
   gap: 5px;
+  font-size: 15px;
 }
-
-.deadlineButtons .clockOff { 
-  position: relative; 
-  
-}
-
-.deadlineButtons .clockOff span{
-  position: absolute;
-  top: 40%;
-  right: -2px;
-  width: 120%;
-  height: 2px;
-  border-radius: 10px;
-  background-color: #000;
-  transform: rotate(-45deg);
-}
-
-.deadlineButtons button:first-child:hover { 
-  background-color: rgba(255, 255, 255, 0.29); 
-  border-bottom-left-radius: 15px;
-  border-top-left-radius: 15px;
-}
-.deadlineButtons button:last-child:hover { 
-  background-color: rgba(255, 255, 255, 0.29); 
-  border-bottom-right-radius: 15px;
-  border-top-right-radius: 15px;
-}
-.deadlineButtons:first-child { 
-  border-bottom-left-radius: 15px;
-  border-top-left-radius: 15px;
-}
-.deadlineButtons:last-child {
-  border-bottom-right-radius: 15px;
-  border-top-right-radius: 15px;
+.doneAction .doneBtn.active {
+  background-color: rgb(255, 255, 255);
+  font-weight: bold;
 }

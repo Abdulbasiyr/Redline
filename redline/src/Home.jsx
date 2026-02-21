@@ -28,7 +28,7 @@ function Home () {
       <Header setModeAuth={setModeAuth}  accountActive={accountActive} setActive={setActive}/>
       { accountActive ? <Account setAccountActive={setAccountActive} /> : null }
       <Body    setEditCard={setEditCard} setDetailsCard={setDetailsCard} detailsCard={detailsCard} setActive={setActive} tasks={tasks} setTasks={setTasks}/>  
-      <TaskAdd setEditCard={setEditCard} editCard={editCard} detailsCard={detailsCard} setActive={setActive} active={isActive} setTasks={setTasks}/>   
+      <TaskAdd tasks={tasks} setEditCard={setEditCard} editCard={editCard} detailsCard={detailsCard} setActive={setActive} active={isActive} setTasks={setTasks}/>   
     </>
   )
 }

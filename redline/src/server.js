@@ -133,20 +133,20 @@ export async function getTasks() {
 
 export async function addTasks(data) {
 
-  // const {accessToken, ...payload} = data
+  const {accessToken, ...payload} = data
 
-  // const res = await fetch( `http://localhost:3000/api/task/add`, {
-  //               method: 'POST',
-  //               headers: {
-  //                 'Authorization': `Bearer ${accessToken}`,
-  //                 'Content-type': 'application/json'
-  //               },
-  //               body: JSON.stringify(payload)
-  //             })
+  const res = await fetch( `http://localhost:3000/api/task/add`, {
+                method: 'POST',
+                headers: {
+                  'Authorization': `Bearer ${accessToken}`,
+                  'Content-type': 'application/json'
+                },
+                body: JSON.stringify(payload)
+              })
 
-  // if(!res.ok) return
-  // const data = await res.json()
-  // return data
+  if(!res.ok) return {message: 'Request failed'}
+  const data = await res.json()
+  return data
 }
 
 export async function updateTask(data) {

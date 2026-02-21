@@ -80,15 +80,11 @@ const AuthModal = ({setPasswordMode}) => {
             {mode === 'login' ? <span className='forgotPassword' onClick={e => navigate('/auth/forgotPassword') } > Forgot password? </span> : null}
           </div>
 
-          <div className="withGoogle">
-            <button className='googleBtn'> <FaGoogle size={19}></FaGoogle><span>Continue with Google</span>  </button>
-          </div>
-
           <button type='submit' className='submit' >{mode === 'signup' ? 'sign up' : mode }</button>
           <span className="errorMessage">{errorMessage}</span>
         </form>
 
-        {mode === 'login' ? <div className='bottomText__loginAndSign'> <span>Dont have an account?</span> <span className='moveSign' onClick={() => navigate('/auth?mode=signup')}>sign up</span> </div>  : null}
+        {mode === 'login' ? <div className='bottomText__loginAndSign'> <span>Dont have an account?</span> <span className='move' onClick={() => navigate('/auth?mode=signup')}>sign up</span> </div>  : <div className='bottomText__loginAndSign'> <span>You have an account?</span> <span className='move' onClick={() => navigate('/auth?mode=login')}>Login</span> </div> }
 
       </div>  
 

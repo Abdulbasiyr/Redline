@@ -19,6 +19,7 @@ model User {
   createdAt           DateTime @default(now())
   settings            UserSettings?
   passwordResetToken  PasswordResetToken[]
+  tasks               Task[]
 }
 
 model PasswordResetToken {
@@ -39,9 +40,12 @@ model UserSettings {
 }
 
 model Task {
-  id     String @id @default(uuid())
-  title  String
-  text   String
-  color  String
-  date   DateTime
+  id        String @id @default(uuid())
+  title     String  
+  text      String  
+  color     String  
+  date      DateTime
+  completed Boolean 
+  userId    String  
+  user      User @relation(fields: [userId], references: [id])
 }

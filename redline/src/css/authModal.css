@@ -29,7 +29,7 @@
   width: 100%;
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
+  justify-content: space-around;
   gap: 10px;
 }
 
@@ -95,11 +95,11 @@
 }
 .bottomText__loginAndSign span { font-size: 14px; }
 
-.bottomText__loginAndSign .moveSign {
+.bottomText__loginAndSign .move {
   color: #005f8b;
   font-weight: bold;
 }
-.bottomText__loginAndSign .moveSign:hover {
+.bottomText__loginAndSign .move:hover {
   text-decoration: underline;
   cursor: pointer;
 }

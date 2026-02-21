@@ -1,14 +1,22 @@
 
 import './css/filterTabs.css'
-import { useState } from 'react'
+import { useMemo } from 'react'
 
 
-const FilterTabs = ({setFilterTabs, filterTabs}) => {
+const FilterTabs = ({setFilterTabs, filterTabs, tasks}) => {
 
   const items = ['all', 'green', 'yellow', 'red']
 
-  const [deadlineActive, setDeadlineActive] = useState('notDeadline')
-  
+  // count for filterTabs
+  const counts = useMemo(() => {
+    return tasks.reduce((acc, task) => {
+      console.log(task)
+      if(task.completed) return acc
+      acc.all += 1
+      acc[task.color] = (acc[task.color] ?? 0) + 1 
+      return acc
+    }, {all: 0, green: 0, yellow: 0, red: 0 })
+  }, [tasks])
 
 
   return(
@@ -18,13 +26,13 @@ const FilterTabs = ({setFilterTabs, filterTabs}) => {
           {items.map((text, index) => {
             return  <button key={index} className={`menu ${filterTabs === text ? filterTabs : ''}`} onClick={() => setFilterTabs(items[index])}>
                       {text}
-                      <span className='filterCardCount green'>10</span>
+                      <span className={`filterCardCount ${text}`}>{counts[text]}</span>
                     </button>
           })}
         </div>
-        <div className="deadlineButtons">
-          <button className={deadlineActive === 'notDeadline' ? 'active' : 'not'} onClick={e => setDeadlineActive('notDeadline')}>  НЕ срочные </button>
-          <button className={deadlineActive === 'deadline'    ? 'active' : 'not'} onClick={e => setDeadlineActive('deadline')}>  Срочные    </button>
+
+        <div className="doneAction">
+          <button className={filterTabs === 'done' ? 'doneBtn active' : 'doneBtn'} onClick={e => setFilterTabs('done')}> Done </button>
         </div>
 
       </div>

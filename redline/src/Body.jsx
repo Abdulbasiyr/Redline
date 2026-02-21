@@ -11,14 +11,14 @@ const Body = ({tasks, setTasks, setActive, setDetailsCard, detailsCard, setEditC
   const {user} = useAuth()
 
   const [showMore, setShowMore ]      = useState(false)
-  const [filterTabs, setFilterTabs]   = useState(user?.settings?.startPage)
+  const [filterTabs, setFilterTabs]   = useState(user?.settings?.startPage || 'all')
 
 
   return(
     <>
     
       <div className="body">
-        <FilterTabs setFilterTabs={setFilterTabs} filterTabs={filterTabs} />
+        <FilterTabs tasks={tasks} setFilterTabs={setFilterTabs} filterTabs={filterTabs} />
         <TaskList filterTabs={filterTabs} setTasks={setTasks} tasks={tasks} setActive={setActive} setEditCard={setEditCard} setShowMore={setShowMore} setDetailsCard={setDetailsCard}/>
         {showMore ? <ShowTaskModal setActive={setActive} setEditCard={setEditCard} tasks={tasks} setTasks={setTasks} setShowMore={setShowMore} detailsCard={detailsCard}  /> : null}
       </div>

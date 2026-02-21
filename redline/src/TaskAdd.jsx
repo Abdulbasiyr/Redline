@@ -7,7 +7,7 @@ import { updateTask } from './server'
 import { useAuth } from './AuthContext'
 
 
-const TaskAdd = ({setActive, active, setTasks, detailsCard, setEditCard, editCard}) => {
+const TaskAdd = ({setActive, active, setTasks, tasks, detailsCard, setEditCard, editCard}) => {
 
   const {accessToken} = useAuth
 
@@ -110,10 +110,12 @@ const TaskAdd = ({setActive, active, setTasks, detailsCard, setEditCard, editCar
 
     // sozdaniye noviye danniye
     const obj = {
+      id: crypto.randomUUID(),
       title,
       text,
       color: radioState,
       date: dataRef.current.value,
+      completed: false
     }
 
     setTasks(prev => [...prev, obj])
@@ -132,7 +134,7 @@ const TaskAdd = ({setActive, active, setTasks, detailsCard, setEditCard, editCar
 
   return(
     <>
-    
+      {console.log(tasks)}
       <div className={`container ${ active ? 'active' : '' } `}>
 
         <button className="close" onClick={() => {
