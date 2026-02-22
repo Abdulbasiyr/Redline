@@ -10,7 +10,6 @@ const FilterTabs = ({setFilterTabs, filterTabs, tasks}) => {
   // count for filterTabs
   const counts = useMemo(() => {
     return tasks.reduce((acc, task) => {
-      console.log(task)
       if(task.completed) return acc
       acc.all += 1
       acc[task.color] = (acc[task.color] ?? 0) + 1 

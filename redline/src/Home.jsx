@@ -8,12 +8,11 @@ import { useState } from "react"
 import Account from "./Account.jsx"
 import { useAuth } from "./AuthContext.jsx"
 
-function Home () {
+function Home ({setTasks, tasks}) {
 
-  const {accountActive, setAccountActive, setUser, user} = useAuth()
+  const {accountActive, setAccountActive} = useAuth()
 
   const [isActive, setActive]         = useState(false) // sostoyaniye dlya pokaza TaskAdd modal
-  const [tasks, setTasks]             = useState([])    // Tasks danniye kotoriye dobavilis nedavno
   const [detailsCard, setDetailsCard] = useState()      // detali o karte (danniye)
   const [editCard, setEditCard]       = useState(false) // sostoyaniye izmenyatsya danniye ili net
 
@@ -23,7 +22,6 @@ function Home () {
 
   return (
     <>
-      {/* {modeAuth ? <AuthModal  setAuthData={setAuthData} setAccountActive={setAccountActive} setPasswordMode={setPasswordMode} /> : null } */}
       { passwordMode ? <PasswordForgot/> : null }
       <Header setModeAuth={setModeAuth}  accountActive={accountActive} setActive={setActive}/>
       { accountActive ? <Account setAccountActive={setAccountActive} /> : null }

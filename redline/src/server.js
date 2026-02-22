@@ -126,16 +126,27 @@ export async function profileSettings(obj) {
 }
 
 
-export async function getTasks() {
+export async function getTasks(accessToken) {
+
+  const res = await fetch( `http://localhost:3000/api/tasks/get`, {
+                method: 'GET',
+                headers: {
+                  'Authorization': `Bearer ${accessToken}`,
+                },
+              })
+
+  const data = await res.json()
+  if(!res.ok) return {message: 'Request failed'}
+  return data
 
 }
 
 
-export async function addTasks(data) {
+export async function addTasks(datas) {
 
-  const {accessToken, ...payload} = data
+  const {accessToken, ...payload} = datas
 
-  const res = await fetch( `http://localhost:3000/api/task/add`, {
+  const res = await fetch( `http://localhost:3000/api/tasks/add`, {
                 method: 'POST',
                 headers: {
                   'Authorization': `Bearer ${accessToken}`,
@@ -144,17 +155,44 @@ export async function addTasks(data) {
                 body: JSON.stringify(payload)
               })
 
-  if(!res.ok) return {message: 'Request failed'}
   const data = await res.json()
+  if(!res.ok) return {message: 'Request failed'}
   return data
 }
 
-export async function updateTask(data) {
+export async function updateTask(datas) {
+  const {accessToken, ...payload} = datas
 
+  const res = await fetch( `http://localhost:3000/api/tasks/update`, {
+                method: 'DELETE',
+                headers: {
+                  'Authorization': `Bearer ${accessToken}`,
+                  'Content-type': 'application/json'
+                },
+                body: JSON.stringify(payload)
+              })
+
+  const data = await res.json()
+  console.log(data)
+  if(!res.ok) return {message: 'Request failed'}
+  return data
 }
 
-export async function deleteTask(data) {
+export async function deleteTask(datas) {
+  const {accessToken, id} = datas
+  console.log(id, accessToken)
+  const res = await fetch( `http://localhost:3000/api/tasks/delete/${id}`, {
+                method: 'DELETE',
+                headers: {
+                  'Authorization': `Bearer ${accessToken}`,
+                  'Content-type': 'application/json'
+                }
+              })
 
+  const data = await res.json()
+  console.log(data)
+  if(!res.ok) return {message: 'Request failed'}
+  return data
 }
 
 export async function logout() {

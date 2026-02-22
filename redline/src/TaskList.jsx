@@ -1,17 +1,21 @@
 
-import { useEffect, useState } from "react"
+import { useEffect} from "react"
 import { getTasks } from "./server"
 import TaskItem from "./TaskItem"
+import { useAuth } from "./AuthContext"
 
 const TaskList = ({setTasks, tasks, setShowMore, setDetailsCard, setActive, setEditCard, filterTabs}) => {
 
+  const {accessToken, accountActive} = useAuth()
 
-  // useEffect( () => {
-  //   (async () => {
-  //     const data = await getTasks()
-  //     setTasks(prev => [...prev])
-  //   })()
-  // },[])
+  useEffect( () => {
+    if(!accountActive) return
+    (async () => {
+      const data = await getTasks(accessToken)
+      if(!data.success) return 
+      setTasks(prev => [...data.tasks] )
+    })()
+  },[])
 
   return(
     <>
@@ -30,7 +34,7 @@ const TaskList = ({setTasks, tasks, setShowMore, setDetailsCard, setActive, setE
               })
               .map((task, index) => (
                 <TaskItem
-                  key={task.id || index}
+                  key={index}
                   setActive={setActive}
                   setEditCard={setEditCard}
                   task={task}

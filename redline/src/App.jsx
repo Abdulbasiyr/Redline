@@ -8,12 +8,12 @@ import { useState } from 'react'
 const App = () => {
 
   const [authData, setAuthData]           = useState({})
-
+  const [tasks, setTasks]                 = useState([])    // Tasks danniye kotoriye dobavilis nedavno
 
   return(
     <Routes>  
-      <Route path='/' element={ <Home setAuthData={setAuthData} authData={authData} /> } />
-      <Route path='/auth' element={ <AuthModal setAuthData={setAuthData} /> } />
+      <Route path='/' element={ <Home setTasks={setTasks} tasks={tasks} setAuthData={setAuthData} authData={authData} /> } />
+      <Route path='/auth' element={ <AuthModal setTasks={setTasks} setAuthData={setAuthData} /> } />
       <Route path='/auth/forgotPassword' element={ <PasswordForgot /> } />
     </Routes>
   )

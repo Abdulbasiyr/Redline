@@ -7,7 +7,7 @@ import { useSearchParams, useNavigate } from 'react-router-dom'
 import { FaGoogle } from 'react-icons/fa6'
 import { useAuth } from './AuthContext'
 
-const AuthModal = ({setPasswordMode}) => {
+const AuthModal = ({setTasks}) => {
 
 
   const {setAccountActive, setUser, setAccessToken} = useAuth()
@@ -55,12 +55,12 @@ const AuthModal = ({setPasswordMode}) => {
     // obrasheniya k serveru
     try {
       const data = await authenticateUser(payload)
-      console.log(data)
       setUser({data: data.user, settings: data.settings})
       setAccessToken(data.accessToken)
       setForm({name: '', email: '', password: ''})
       navigate('/')
       setAccountActive(true)
+      if(data.tasks) return setTasks(data.tasks)
     } catch(err) {
       setErrorMessage(err.message)
     }

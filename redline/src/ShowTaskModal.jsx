@@ -1,27 +1,32 @@
 
+import { useAuth } from './AuthContext'
 import './css/showTaskModal.css'
 import { deleteTask } from './server'
 import { FiTrash2, FiCalendar, FiCheckSquare } from 'react-icons/fi'
 
 const ShowTaskModal = ({setShowMore, detailsCard, setTasks}) => {
 
-  const id       = detailsCard.dataset.id
+  const {accessToken} = useAuth()
+
+  const id       = detailsCard.dataset.id ?? detailsCard.dataset.clientId
   const title    = detailsCard.querySelector('.title').textContent
   const text     = detailsCard.querySelector('.text').textContent
   const dateTime = detailsCard.querySelector('.dateTime').textContent
   
   
-  const deleteClick = (e) => {
+  const deleteClick = async (e) => {
     const id   = e.target.closest('.showMoreContainer').dataset.idMore
-    setTasks(prev => prev.filter(task => task.id !== id))
+    setTasks(prev => prev.filter(task => (task.id ?? task.clientId) !== id))
     setShowMore(false)
-    // deleteTask(id)
+    const data = await deleteTask({id, accessToken})
+    console.log(data)
+    if(!data?.success) return console.log(data?.message)
   }
 
 
   const handleCheck = () => {
 
-    setTasks(prev => prev.map(task => task.id === id ? { ...task, completed: true} : task))
+    setTasks(prev => prev.map(task => task.id ?? task.clientId === id ? { ...task, completed: true} : task))
     setShowMore(false)
   }
 

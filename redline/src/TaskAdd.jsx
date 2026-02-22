@@ -3,13 +3,13 @@ import { useEffect, useMemo, useState } from 'react'
 import './css/taskAdd.css'
 import { useRef } from 'react'
 import { addTasks } from './server'
-import { updateTask } from './server'
+import { updateTask } from './server.js'
 import { useAuth } from './AuthContext'
 
 
 const TaskAdd = ({setActive, active, setTasks, tasks, detailsCard, setEditCard, editCard}) => {
 
-  const {accessToken} = useAuth
+  const {accessToken, accountActive, user} = useAuth()
 
 
   const titleRef                      = useRef(null)
@@ -75,15 +75,16 @@ const TaskAdd = ({setActive, active, setTasks, tasks, detailsCard, setEditCard, 
 
 
   // vsyo chto svyazano s dobavleniyem card
-  const clickAdd = () => {
+  const clickAdd = async () => {
 
     const title     = titleRef.current.value 
     const text      = inputRefText.current.value
 
+
     if(!title || !text || !radioState || !dataRef.current.value) return
 
 
-    // izmeneniye danniye
+    // if card edit
     if(editCard) {
       const newTask = {
         id: detailsCard.dataset.id,
@@ -93,7 +94,7 @@ const TaskAdd = ({setActive, active, setTasks, tasks, detailsCard, setEditCard, 
         date: dataRef.current.value
       }
 
-      setTasks(prev => prev.map(task => task.id === detailsCard.dataset.id ? { ...task, ...newTask} : task ))  // dobavleniye izmenniy card i stariye sushestvuyeshiye
+      setTasks(prev => prev.map(task => (task.id ?? task.clientId) === detailsCard.dataset.id ? { ...task, ...newTask} : task ))  // dobavleniye izmenniy card i stariye sushestvuyeshiye
 
       // ochisheniye poley
       setEditCard(false)
@@ -101,22 +102,24 @@ const TaskAdd = ({setActive, active, setTasks, tasks, detailsCard, setEditCard, 
       inputRefText.current.value = null
       setCheck('')
       clearDate()
-
-      // dobavleniye v bazu dannix
-      // updateTasks(newTask)
+      
+      const data = await updateTask({newTask, accessToken})
+      if(!data?.success) return console.log(data?.message)
+      
 
       return
     }
 
     // sozdaniye noviye danniye
     const obj = {
-      id: crypto.randomUUID(),
+      clientId: crypto.randomUUID(),
       title,
       text,
       color: radioState,
       date: dataRef.current.value,
       completed: false
     }
+
 
     setTasks(prev => [...prev, obj])
 
@@ -125,8 +128,12 @@ const TaskAdd = ({setActive, active, setTasks, tasks, detailsCard, setEditCard, 
     setCheck('')
     clearDate()
 
-    // addTasks({data: obj, accessToken})
+    if(!accountActive) return
+    
+    const data = await addTasks({data: obj, accessToken})
+    if(!data.success) return 
 
+    setTasks(prev => prev.map(task => task.clientId === data.clientId ? {...task, id: data.id} : task))
   }
 
 
@@ -134,7 +141,6 @@ const TaskAdd = ({setActive, active, setTasks, tasks, detailsCard, setEditCard, 
 
   return(
     <>
-      {console.log(tasks)}
       <div className={`container ${ active ? 'active' : '' } `}>
 
         <button className="close" onClick={() => {

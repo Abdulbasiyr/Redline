@@ -87,13 +87,16 @@ export async function loginUser(req, res) {
     const settings = await prisma.userSettings.findUnique({where: {userId: user.id}})
     if(!settings) return res.status(500).json({success: false, message: 'User settings not found'})
 
+    const tasks = await prisma.task.findMany({where: {userId: user.id}})
+    if(!tasks) return res.status(500).json({success: false, message: 'Tasks not found'})
+
     const accessToken  = signAccessToken({userId: user.id})
     const refreshToken = signRefreshToken({userId: user.id})
     setRefreshCookie(res, refreshToken)
 
     const {passwordHash, ...safeUser} = user
 
-    res.status(200).json({success: true, accessToken, user: safeUser, settings})
+    res.status(200).json({success: true, accessToken, user: safeUser, tasks, settings})
   
   } catch(err) {
     console.log(err)

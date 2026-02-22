@@ -8,17 +8,23 @@ const TaskItem = ({task, setEditCard, setActive, setShowMore, setDetailsCard, de
 
 
   const containerRef = useRef(null)
+
   const [d, t] = task.date.split('T') 
+  const [yyyy, mm, dd] = d.split('-')
+  const date = `${dd}.${mm}.${yyyy}`
+  const time = t.slice(0, 5)
+
+  const id = task.id ?? task.clientId
 
   useEffect(() => { containerRef.current.querySelectorAll('.card') }, [] )
 
   return(
     
-    <div className={`card ${task.color}`} data-color-card={task.color} ref={containerRef} data-id={task.id}>
+    <div className={`card ${task.color}`} data-color-card={task.color} ref={containerRef} data-id={id}>
       <h3 className='title'>{task.title}</h3>
       <p  className='text'>{task.text}</p>
       <div className="wrapperStateCard">
-        <div className="dateTime"> <FiClock className='date-time-icon'/> {d} {t} </div>
+        <div className="dateTime"> <FiClock className='date-time-icon'/> {date} {time} </div>
         <span className={`colorCard ${task.color}`}>{task.color}</span>
       </div>
       <div className="more-buttons">
