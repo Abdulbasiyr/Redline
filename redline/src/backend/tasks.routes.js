@@ -5,7 +5,7 @@ const router = Router()
 
 router.get('/get', apiGetTasks)
 router.post('/add', apiAddTasks)
-router.patch('/update', apiPatchTask)
+router.patch('/update/:id', apiPatchTask)
 router.delete('/delete/:id', apiDeleteTask)
 
 

@@ -108,12 +108,10 @@ export async function loginUser(req, res) {
 // funksiya dlya proverka accessToken
 export async function requireAuth(req, res, next) {
 
-  
   const authHeader = req.headers.authorization
   if(!authHeader) return res.status(401).json({success: false, message: 'unAthutorization'})
 
   const token = authHeader.split(' ')[1]
-
 
   try {
   const payload = jwt.verify(token, process.env.ACCESS_TOKEN)

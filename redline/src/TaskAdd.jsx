@@ -28,13 +28,11 @@ const TaskAdd = ({setActive, active, setTasks, tasks, detailsCard, setEditCard, 
       const title      = detailsCard.querySelector('.title').textContent
       const text       = detailsCard.querySelector('.text').textContent
       const checkColor = detailsCard.dataset.colorCard
-      const date       = detailsCard.querySelector('.dateTime').textContent
 
       titleRef.current.value     = title
       inputRefText.current.value = text
       setCheck(checkColor)
       setRadioState(checkColor)
-      dataRef.current.value      = date
     }
   }, [editCard])
 

@@ -74,16 +74,31 @@ export async function apiPatchTask(req, res) {
 
   if(!req.userId) return res.status(401).json({success: false, message: 'unAuthorized'})
 
+  console.log(req.body.newTask)
   const schema = z.object({
-    title: z.string().min(1),
-    text: z.string().min(1),
-    color: z.string().min(3),
-    date: z.coerce().date()
-  })
+    title: z.string().min(1).optional(),
+    text: z.string().min(1).optional(),
+    color: z.enum(['green', 'yellow', 'red']).optional(),
+    date: z.coerce.date().optional(),
+    completed: z.boolean().optional()
+  }).refine((obj) => Object.keys(obj).length > 0, {message: 'No fields to update'})
 
-  const parsed = schema.safeParse(req.body)
-  
+  const update = req.body.newTask ?? req.body
+
+  const parsed = schema.safeParse(update)
   if(!parsed.success) { return console.log(parsed.error.issues[0].message), res.status(400).json({success: false, message: 'Incorrect Data'})  }
 
-  return console.log('zod success')
+
+  try {
+
+
+    const result  = await prisma.task.updateMany({where: {id: req.params.id, userId: req.userId}, data: parsed.data })
+    if(result.count === 0) return res.status(404).json({success: false, message: 'Task not Found'})
+
+    return res.status(200).json({success: true})
+  } catch(err) {
+    console.log(err)
+    return res.status(500).json({success: false, message: 'Server error'})
+  }
+
 }

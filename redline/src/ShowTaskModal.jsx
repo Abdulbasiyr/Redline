@@ -1,7 +1,7 @@
 
 import { useAuth } from './AuthContext'
 import './css/showTaskModal.css'
-import { deleteTask } from './server'
+import { deleteTask, updateTask } from './server'
 import { FiTrash2, FiCalendar, FiCheckSquare } from 'react-icons/fi'
 
 const ShowTaskModal = ({setShowMore, detailsCard, setTasks}) => {
@@ -24,10 +24,16 @@ const ShowTaskModal = ({setShowMore, detailsCard, setTasks}) => {
   }
 
 
-  const handleCheck = () => {
+  const handleCheck = async () => {
 
-    setTasks(prev => prev.map(task => task.id ?? task.clientId === id ? { ...task, completed: true} : task))
+    setTasks(prev => prev.map(task => (task.id ?? task.clientId) === id ? { ...task, completed: true} : task))
     setShowMore(false)
+
+    const id = detailsCard.dataset?.id
+    if(!id) return
+
+    await updateTask({accessToken, id, completed: true})
+
   }
 
   return(
@@ -36,6 +42,7 @@ const ShowTaskModal = ({setShowMore, detailsCard, setTasks}) => {
       <button className="close" onClick={() => { setShowMore(false) }} >x</button>
       <h2  className='titleMore'> {title} </h2>
       <p   className='textMore'> {text} </p>
+      <div className="baseColor green"> create color </div>
       <div className='dateTimeMore'> <span> <FiCalendar className='calendar' size={20}/> </span> <span> {dateTime} </span> </div>
 
       <div className="changeButtons">

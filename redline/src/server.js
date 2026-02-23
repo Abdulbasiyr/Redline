@@ -1,5 +1,5 @@
 
-// pri registration ili logination
+// in registration or login
 export async function authenticateUser(user) {
 
   const url = user.mode === 'signup' ? '/api/auth/registerUser' : '/api/auth/loginUser'
@@ -30,7 +30,7 @@ export async function authenticateUser(user) {
 }
 
 
-// function dlya forgotPassword
+// function for forgotPassword
 export async function sendResetPasswordEmail(payload) {
   const res = await fetch('http://localhost:3000/api/auth/password-reset/request', {
                       method: 'POST',
@@ -62,6 +62,7 @@ export async function sendResetPasswordEmail(payload) {
 }
 
 
+// verify code
 export async function verifyResetCode(payload) {
   const res = await fetch('http://localhost:3000/api/auth/password-reset/verify', {
                       method: 'POST',
@@ -92,7 +93,7 @@ export async function confirmResetPassword(payload) {
 }
 
 
-// pri obnovleniye stranitsi
+// when reload page
 export async function updatePage() {
   const res = await fetch( `http://localhost:3000/api/auth/refresh`, {
                 method: 'POST',
@@ -107,7 +108,7 @@ export async function updatePage() {
 }
 
 
-// soxraneniye izmeneniye v nastroyke
+// save edits in settings
 export async function profileSettings(obj) {
   const {accessToken, ...payload} = obj
 
@@ -126,6 +127,7 @@ export async function profileSettings(obj) {
 }
 
 
+// get tasks
 export async function getTasks(accessToken) {
 
   const res = await fetch( `http://localhost:3000/api/tasks/get`, {
@@ -142,10 +144,10 @@ export async function getTasks(accessToken) {
 }
 
 
+// add tasks
 export async function addTasks(datas) {
 
   const {accessToken, ...payload} = datas
-
   const res = await fetch( `http://localhost:3000/api/tasks/add`, {
                 method: 'POST',
                 headers: {
@@ -160,11 +162,13 @@ export async function addTasks(datas) {
   return data
 }
 
-export async function updateTask(datas) {
-  const {accessToken, ...payload} = datas
 
-  const res = await fetch( `http://localhost:3000/api/tasks/update`, {
-                method: 'DELETE',
+// update task
+export async function updateTask(datas) {
+  const {accessToken, id, ...payload} = datas
+
+  const res = await fetch( `http://localhost:3000/api/tasks/update/${id}`, {
+                method: 'PATCH',
                 headers: {
                   'Authorization': `Bearer ${accessToken}`,
                   'Content-type': 'application/json'
@@ -178,6 +182,8 @@ export async function updateTask(datas) {
   return data
 }
 
+
+// delete task
 export async function deleteTask(datas) {
   const {accessToken, id} = datas
   console.log(id, accessToken)
@@ -195,6 +201,8 @@ export async function deleteTask(datas) {
   return data
 }
 
+
+// exit in account
 export async function logout() {
   const res = await fetch('http://localhost:3000/api/auth/logout', {
                 method: 'POST',
