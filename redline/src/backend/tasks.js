@@ -8,7 +8,7 @@ export async function apiAddTasks(req, res) {
     clientId: z.string(),
     title: z.string().min(1),
     text: z.string().min(1),
-    color: z.string().min(3),
+    createColor: z.string().min(3),
     date: z.coerce.date(),
     completed: z.boolean()
   })
@@ -78,7 +78,7 @@ export async function apiPatchTask(req, res) {
   const schema = z.object({
     title: z.string().min(1).optional(),
     text: z.string().min(1).optional(),
-    color: z.enum(['green', 'yellow', 'red']).optional(),
+    createColor: z.enum(['green', 'yellow', 'red']).optional(),
     date: z.coerce.date().optional(),
     completed: z.boolean().optional()
   }).refine((obj) => Object.keys(obj).length > 0, {message: 'No fields to update'})

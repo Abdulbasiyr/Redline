@@ -34,6 +34,21 @@
   box-shadow: 0 5px 6px #9b9b9b;
 }
 
+.baseColor {
+  color: #fff;
+  width: 100px;
+  height: 25px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 15px;
+  border-radius: 4px;
+}
+
+.baseColor.green{ background-color: #00a700; }
+.baseColor.yellow { background-color:#d5ec00; }
+.baseColor.red { background-color: #a70000; }
+
 .dateTimeMore {
   position: absolute;
   bottom: 5px;

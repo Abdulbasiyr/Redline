@@ -20,7 +20,7 @@ const TaskItem = ({task, setEditCard, setActive, setShowMore, setDetailsCard, de
 
   return(
     
-    <div className={`card ${task.color}`} data-color-card={task.color} ref={containerRef} data-id={id}>
+    <div className={`card ${task.color}`} data-create-color={task.createColor} data-color-card={task.color} ref={containerRef} data-id={id}>
       <h3 className='title'>{task.title}</h3>
       <p  className='text'>{task.text}</p>
       <div className="wrapperStateCard">

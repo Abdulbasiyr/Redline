@@ -88,7 +88,7 @@ const TaskAdd = ({setActive, active, setTasks, tasks, detailsCard, setEditCard, 
         id: detailsCard.dataset.id,
         title, 
         text, 
-        color: radioState, 
+        createColor: radioState, 
         date: dataRef.current.value
       }
 
@@ -113,7 +113,7 @@ const TaskAdd = ({setActive, active, setTasks, tasks, detailsCard, setEditCard, 
       clientId: crypto.randomUUID(),
       title,
       text,
-      color: radioState,
+      createColor: radioState,
       date: dataRef.current.value,
       completed: false
     }
