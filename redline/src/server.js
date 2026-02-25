@@ -11,7 +11,7 @@ export async function authenticateUser(user) {
                     password: user.password
                   }
 
-  const res = await fetch( `http://localhost:3000${url}`, {
+  const res = await fetch( `${import.meta.env.VITE_API_URL}${url}`, {
                 method: 'POST',
                 credentials: 'include',
                 headers: {
@@ -32,7 +32,7 @@ export async function authenticateUser(user) {
 
 // function for forgotPassword
 export async function sendResetPasswordEmail(payload) {
-  const res = await fetch('http://localhost:3000/api/auth/password-reset/request', {
+  const res = await fetch(`${import.meta.env.VITE_API_URL}/api/auth/password-reset/request`, {
                       method: 'POST',
                       credentials: 'include',
                       headers: {
@@ -64,7 +64,7 @@ export async function sendResetPasswordEmail(payload) {
 
 // verify code
 export async function verifyResetCode(payload) {
-  const res = await fetch('http://localhost:3000/api/auth/password-reset/verify', {
+  const res = await fetch(`${import.meta.env.VITE_API_URL}/api/auth/password-reset/verify`, {
                       method: 'POST',
                       credentials: 'include',
                       headers: {
@@ -80,7 +80,7 @@ export async function verifyResetCode(payload) {
 
 // Change reset password
 export async function confirmResetPassword(payload) {
-  const res = await fetch('http://localhost:3000/api/auth/password-reset/confirm', {
+  const res = await fetch(`${import.meta.env.VITE_API_URL}/api/auth/password-reset/confirm`, {
                 method: 'POST',
                 credentials: 'include',
                 headers: {
@@ -95,7 +95,7 @@ export async function confirmResetPassword(payload) {
 
 // when reload page
 export async function updatePage() {
-  const res = await fetch( `http://localhost:3000/api/auth/refresh`, {
+  const res = await fetch( `${import.meta.env.VITE_API_URL}/api/auth/refresh`, {
                 method: 'POST',
                 credentials: 'include'
               })
@@ -112,7 +112,7 @@ export async function updatePage() {
 export async function profileSettings(obj) {
   const {accessToken, ...payload} = obj
 
-  const res = await fetch( `http://localhost:3000/api/user/settings`, {
+  const res = await fetch( `${import.meta.env.VITE_API_URL}/api/user/settings`, {
                 method: 'PATCH',
                 headers: {
                   'Content-Type': 'application/json',
@@ -130,7 +130,7 @@ export async function profileSettings(obj) {
 // get tasks
 export async function getTasks(accessToken) {
 
-  const res = await fetch( `http://localhost:3000/api/tasks/get`, {
+  const res = await fetch( `${import.meta.env.VITE_API_URL}/api/tasks/get`, {
                 method: 'GET',
                 headers: {
                   'Authorization': `Bearer ${accessToken}`,
@@ -148,7 +148,7 @@ export async function getTasks(accessToken) {
 export async function addTasks(datas) {
 
   const {accessToken, ...payload} = datas
-  const res = await fetch( `http://localhost:3000/api/tasks/add`, {
+  const res = await fetch( `${import.meta.env.VITE_API_URL}/api/tasks/add`, {
                 method: 'POST',
                 headers: {
                   'Authorization': `Bearer ${accessToken}`,
@@ -167,7 +167,7 @@ export async function addTasks(datas) {
 export async function updateTask(datas) {
   const {accessToken, id, ...payload} = datas
 
-  const res = await fetch( `http://localhost:3000/api/tasks/update/${id}`, {
+  const res = await fetch( `${import.meta.env.VITE_API_URL}/api/tasks/update/${id}`, {
                 method: 'PATCH',
                 headers: {
                   'Authorization': `Bearer ${accessToken}`,
@@ -187,7 +187,7 @@ export async function updateTask(datas) {
 export async function deleteTask(datas) {
   const {accessToken, id} = datas
   console.log(id, accessToken)
-  const res = await fetch( `http://localhost:3000/api/tasks/delete/${id}`, {
+  const res = await fetch( `${import.meta.env.VITE_API_URL}/api/tasks/delete/${id}`, {
                 method: 'DELETE',
                 headers: {
                   'Authorization': `Bearer ${accessToken}`,
@@ -204,7 +204,7 @@ export async function deleteTask(datas) {
 
 // exit in account
 export async function logout() {
-  const res = await fetch('http://localhost:3000/api/auth/logout', {
+  const res = await fetch(`${import.meta.env.VITE_API_URL}/api/auth/logout`, {
                 method: 'POST',
                 credentials: 'include'
               })
