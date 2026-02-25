@@ -7,11 +7,12 @@ import { FiTrash2, FiCalendar, FiCheckSquare } from 'react-icons/fi'
 const ShowTaskModal = ({setShowMore, detailsCard, setTasks}) => {
 
   const {accessToken} = useAuth()
-
-  const id       = detailsCard.dataset.id ?? detailsCard.dataset.clientId
-  const title    = detailsCard.querySelector('.title').textContent
-  const text     = detailsCard.querySelector('.text').textContent
-  const dateTime = detailsCard.querySelector('.dateTime').textContent
+ 
+  const id          = detailsCard.dataset.id ?? detailsCard.dataset.clientId
+  const title       = detailsCard.querySelector('.title').textContent
+  const text        = detailsCard.querySelector('.text').textContent
+  const dateTime    = detailsCard.querySelector('.dateTime').textContent
+  const createColor = detailsCard.dataset.createColor
   
   
   const deleteClick = async (e) => {
@@ -42,7 +43,7 @@ const ShowTaskModal = ({setShowMore, detailsCard, setTasks}) => {
       <button className="close" onClick={() => { setShowMore(false) }} >x</button>
       <h2  className='titleMore'> {title} </h2>
       <p   className='textMore'> {text} </p>
-      <div className="baseColor green"> create color </div>
+      <div className={`baseColor ${createColor}`} > create color </div>
       <div className='dateTimeMore'> <span> <FiCalendar className='calendar' size={20}/> </span> <span> {dateTime} </span> </div>
 
       <div className="changeButtons">

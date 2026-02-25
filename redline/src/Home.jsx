@@ -18,14 +18,14 @@ function Home ({setTasks, tasks}) {
 
   const [modeAuth, setModeAuth]           = useState(false)
   const [passwordMode, setPasswordMode]   = useState(false) // forgot password modal
-
+  const [search, setSearch]               = useState('')
 
   return (
     <>
       { passwordMode ? <PasswordForgot/> : null }
-      <Header setModeAuth={setModeAuth}  accountActive={accountActive} setActive={setActive}/>
+      <Header search={search} setSearch={setSearch} setModeAuth={setModeAuth}  accountActive={accountActive} setActive={setActive}/>
       { accountActive ? <Account setAccountActive={setAccountActive} /> : null }
-      <Body    setEditCard={setEditCard} setDetailsCard={setDetailsCard} detailsCard={detailsCard} setActive={setActive} tasks={tasks} setTasks={setTasks}/>  
+      <Body  search={search}  setEditCard={setEditCard} setDetailsCard={setDetailsCard} detailsCard={detailsCard} setActive={setActive} tasks={tasks} setTasks={setTasks}/>  
       <TaskAdd tasks={tasks} setEditCard={setEditCard} editCard={editCard} detailsCard={detailsCard} setActive={setActive} active={isActive} setTasks={setTasks}/>   
     </>
   )

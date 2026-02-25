@@ -4,7 +4,7 @@ import { FiSearch, FiPlus } from 'react-icons/fi'
 import { useNavigate } from 'react-router-dom'
 
 
-const Header = ({setActive, accountActive}) => {
+const Header = ({setActive, accountActive, setSearch, search}) => {
               
   const navigate = useNavigate()
 
@@ -14,7 +14,7 @@ const Header = ({setActive, accountActive}) => {
       <header>
         <h1 className='titleHeader'>Redline</h1>    
         <div className="searchWrapper">
-          <input type="text" placeholder='search...' />
+          <input type="text" placeholder='search...' value={search} onChange={e => setSearch(e.target.value)}/>
           <FiSearch className='searchIcon'/>
         </div>
         <div className="headerMenu">

@@ -26,7 +26,7 @@ export function setRefreshCookie(res, refresh_token) {
   res.cookie('refreshToken', refresh_token, {
     httpOnly: true,
     secure: false,
-    sameSite: 'lax',
+    sameSite: 'none',
     path: '/api/auth',
     maxAge: 30 * 24 * 60 * 60 * 1000
   })

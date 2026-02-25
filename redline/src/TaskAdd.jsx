@@ -89,6 +89,7 @@ const TaskAdd = ({setActive, active, setTasks, tasks, detailsCard, setEditCard, 
         title, 
         text, 
         createColor: radioState, 
+        color: radioState,
         date: dataRef.current.value
       }
 
@@ -114,6 +115,7 @@ const TaskAdd = ({setActive, active, setTasks, tasks, detailsCard, setEditCard, 
       title,
       text,
       createColor: radioState,
+      color: radioState,
       date: dataRef.current.value,
       completed: false
     }
