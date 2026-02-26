@@ -11,7 +11,6 @@ import rateLimit from 'express-rate-limit'
 // registration
 export async function registerUser(req, res) {
 
-  console.log('registered start')
 
   const {name, email, password} = req.body
 
@@ -36,7 +35,6 @@ export async function registerUser(req, res) {
 
     const passwordHash = await bcrypt.hash(parsed.data.password, 10)
 
-    console.log('registered continue...')
     const resultCreate =  await prisma.$transaction( async (tx) => {
                       const user =  await tx.user.create({ 
                                     data: { name: parsed.data.name , email: parsed.data.email, passwordHash },
@@ -47,7 +45,6 @@ export async function registerUser(req, res) {
                       await tx.userSettings.create({ data: { userId: user.id }})
                       return user
                     })
-                    console.log(resultCreate)
 
     const accessToken  = signAccessToken({ userId: resultCreate.id})
     const refreshToken = signRefreshToken({ userId:resultCreate.id})
@@ -93,6 +90,8 @@ export async function loginUser(req, res) {
     const accessToken  = signAccessToken({userId: user.id})
     const refreshToken = signRefreshToken({userId: user.id})
     setRefreshCookie(res, refreshToken)
+    console.log(refreshToken)
+    console.log(accessToken)
 
     const {passwordHash, ...safeUser} = user
 
@@ -260,18 +259,15 @@ export async function resetPassword(req, res) {
 
 // Exit in account
 export async function logout(req, res) {
-  console.log('udaleniye refresh nachalos')
-  console.log(req.cookies.refreshToken)
+
   res.clearCookie('refreshToken', {
     httpOnly: true,
     secure: false,
-    sameSite: 'lax',
+    sameSite: 'none',
     path: '/api/auth'
   })
-  console.log(req.cookies.refreshToken)
 
 
-  console.log('ending udaleniye')
 
   return res.status(200).json({success: true})
 }

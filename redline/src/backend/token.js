@@ -25,7 +25,7 @@ export function signResetToken(payload) {
 export function setRefreshCookie(res, refresh_token) {
   res.cookie('refreshToken', refresh_token, {
     httpOnly: true,
-    secure: false,
+    secure: true,
     sameSite: 'none',
     path: '/api/auth',
     maxAge: 30 * 24 * 60 * 60 * 1000
@@ -39,6 +39,7 @@ export async function updatePage(req, res) {
   try {
 
     const token = req.cookies.refreshToken
+    console.log(token)
     if(!token) return res.status(401).json({success: false, message: 'unAuthorized'})
 
     const payload     = jwt.verify(token, process.env.REFRESH_TOKEN)
@@ -47,11 +48,11 @@ export async function updatePage(req, res) {
 
     const user = await prisma.user.findUnique({ where: {id: userId}, select: { id: true, name: true, email: true, createdAt: true } })
     const settings = await prisma.userSettings.findUnique({where: {userId: userId}, select: {language: true , startPage: true, confirmDelete: true}})
-
+    
     if(!user || !settings) return res.status(401).json({success: false, message: 'User or Settings Not Found'})
-      
-    res.json({success: true, accessToken, user, settings})
-  
+    
+    return res.json({success: true, accessToken, user, settings})
+
   } catch(err) {
     console.log(err.message)
     res.status(401).json({success: false, message: 'invalidRefreshToken'})
