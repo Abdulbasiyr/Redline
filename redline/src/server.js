@@ -3,7 +3,6 @@
 export async function authenticateUser(user) {
 
   const url = user.mode === 'signup' ? '/api/auth/registerUser' : '/api/auth/loginUser'
-  console.log(user.mode)
 
   const payload = {
                     ...(user.mode === 'signup' ? {name: user.name} : {}),
@@ -99,6 +98,7 @@ export async function updatePage() {
                 method: 'POST',
                 credentials: 'include'
               })
+  
 
   const data = await res.json()
   if(!data.success) return {success: data.success, message: data.message}
