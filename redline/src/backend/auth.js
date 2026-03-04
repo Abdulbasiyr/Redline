@@ -90,8 +90,6 @@ export async function loginUser(req, res) {
     const accessToken  = signAccessToken({userId: user.id})
     const refreshToken = signRefreshToken({userId: user.id})
     setRefreshCookie(res, refreshToken)
-    console.log(refreshToken)
-    console.log(accessToken)
 
     const {passwordHash, ...safeUser} = user
 
