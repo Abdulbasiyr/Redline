@@ -27,6 +27,7 @@ header {
   transition: transform .09s;
   color: #fff;
   box-shadow: 0 3px 6px #7575756e;
+  border: 1px solid rgba(255,255,255,0.25);
 }
 .headerMenu button:active {
   transform: scale(.95);
@@ -36,8 +37,14 @@ header {
   .titleHeader {
     font-size: 20px;
   }
+  
+  .headerMenu {
+    width: 100px;
+    display: flex;
+    background-color: red;
+  }
 
-  .headerMenu button {
+  .headerMenu .btnAddHeader {
     padding: 7px 10px;
     font-size: 14px;
     margin-right: 60px;
@@ -50,11 +57,24 @@ header {
   background-color: #ffffff27;
 }
 
+@media (max-width: 360px) {
+  .headerMenu .authHeader {
+    font-size: 12px;
+    width: 60px;
+    height: 20px;
+  }
+}
+
+
 .headerMenu .btnAddHeader{
-  background-color: #3b82f6;
+  /* background-color: #3b82f6; */
   display: flex;
   align-items: center;
   gap: 5px;
+
+  background: linear-gradient(135deg,#1183fd,#22adfd);
+  box-shadow: 0 0 10px rgba(79,163,255,0.6), 0 0 30px rgba(79,163,255,0.3), 0 5px 7px #6666666e;
+
 }
 
 .searchWrapper {

@@ -13,6 +13,7 @@
   border-radius: 15px;
   box-shadow: 3px 4px 5px #8a8a8a57;
   overflow: hidden;
+  border: 1px solid rgba(255,255,255,0.25);
 }
 
 .menu { 
@@ -31,13 +32,16 @@
   overflow: hidden;
   border: none;
   transition: .1s;
+  color: #fff;
+  font-weight: bold;
 }
 .menu:hover {
   background-color: #ffffff;  
+  color: #000;
 }
 .menu.all, .menu.green, .menu.yellow, .menu.red {
   background-color: #fff;
-  font-weight: bold;
+  color: #000;
 }
 
 .filterCardCount {
@@ -69,6 +73,7 @@
   box-shadow: 3px 4px 5px #8a8a8a57;
   overflow: hidden;
   border-radius: 10px;
+  border: 1px solid rgba(255,255,255,0.25);
 }
 .doneAction .doneBtn {
   border: none;
@@ -82,8 +87,10 @@
   justify-content: center;
   gap: 5px;
   font-size: 15px;
+  color: #fff;
+  font-weight: bold;
 }
 .doneAction .doneBtn.active {
   background-color: rgb(255, 255, 255);
-  font-weight: bold;
+  color: #000;
 }

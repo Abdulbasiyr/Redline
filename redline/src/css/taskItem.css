@@ -6,10 +6,14 @@
   display: flex;
   flex-direction: column;
   gap: 10px;
-  box-shadow: 0 2px 7px #7575756e;
-  border-radius: 7px;
   padding: 10px 45px 5px 10px;
-  background-color: rgba(255, 255, 255, 0.3);
+  backdrop-filter: blur(20px);
+  background: rgba(255,255,255,0.15);
+  border: 1px solid rgba(255,255,255,0.25);
+  border-radius: 7px;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.15), inset 0 1px 0 rgba(255,255,255,0.3);
+
+
 }
 .card.green { border-left: 7px solid #00a700; }
 .card.yellow { border-left: 7px solid #d5ec00; }
