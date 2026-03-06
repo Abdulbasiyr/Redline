@@ -15,8 +15,7 @@ app.use(express.json())
 app.use(cookieParser())
 
 app.use(cors({
-  origin: 'http://localhost:5173', 
-  // origin: 'https://redline-s.netlify.app',
+  origin: [ 'http://localhost:5173', 'https://redline-s.netlify.app' ],
   credentials: true
 }))
 
