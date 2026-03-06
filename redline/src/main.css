@@ -13,6 +13,12 @@ body {
   padding: 0 100px;
 }
 
+@media (max-width: 360px) {
+  body {
+    padding: 0 10px;
+  }
+}
+
 button {
   border-radius: 7px;
   transition: .9s;

@@ -26,6 +26,21 @@
   user-select: none;
 }
 
+@media (max-width: 360px) {
+  .accountContainer {
+    top: 3px;
+    right: 3px;
+  }
+
+  .accountContainer .avatar {
+    width: 37px;
+    height: 37px;
+  }
+
+}
+
+
+
 .accountContainer .user-menu {
   width: 200px;
   height: 120px;
