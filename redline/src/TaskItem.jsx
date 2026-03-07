@@ -12,7 +12,6 @@ const TaskItem = ({task, setEditCard, setActive, setShowMore, setDetailsCard, de
   const [d, t] = task.date.split('T') 
   const [yyyy, mm, dd] = d.split('-')
   const date = `${dd}.${mm}.${yyyy}`
-  const time = t.slice(0, 5)
 
   const id = task.id ?? task.clientId
 

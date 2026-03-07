@@ -50,10 +50,8 @@ const TaskAdd = ({setActive, active, setTasks, tasks, detailsCard, setEditCard, 
     const y  = dd.getFullYear()
     const m  = pad(dd.getMonth() + 1 )
     const d  = pad(dd.getDate())
-    const h  = pad(dd.getHours())
-    const mn = pad(dd.getMinutes())
-    setDate(`${y}-${m}-${d}T${h}:${mn}`)
-    return `${y}-${m}-${d}T${h}:${mn}`
+    setDate(`${y}-${m}-${d}`)
+    return `${y}-${m}-${d}`
   }
 
   useEffect(() => {
@@ -161,7 +159,8 @@ const TaskAdd = ({setActive, active, setTasks, tasks, detailsCard, setEditCard, 
           <label className='cb'>
             <input type="radio"  checked={check === 'green'} onChange={(e) => { 
               handlePriorityChange('green') 
-              setCheck('green')  
+              setRadioState('green')  
+              setCheck('green')
               }} name='priority'/>
             <span className="box green"></span>
           </label>
@@ -169,7 +168,8 @@ const TaskAdd = ({setActive, active, setTasks, tasks, detailsCard, setEditCard, 
           <label className='cb'>
             <input type="radio"  checked={check === 'yellow'} onChange={(e) => {
               handlePriorityChange('yellow') 
-              setCheck('yellow')              
+              setRadioState('yellow')     
+              setCheck('yellow')         
               }} name='priority'/>
             <span className="box yellow"></span>
           </label>
@@ -177,17 +177,18 @@ const TaskAdd = ({setActive, active, setTasks, tasks, detailsCard, setEditCard, 
           <label className='cb'>
             <input type="radio"  checked={check === 'red'} onChange={(e) => { 
               handlePriorityChange('red') 
+              setRadioState('red')
               setCheck('red')
               }} name='priority'/>
             <span className="box red"></span>
           </label>
         </div>
 
-        <input type="datetime-local" min={date} max={date} ref={dataRef} disabled={disable} onKeyDown={e => e.preventDefault()} onPaste={e => e.preventDefault()} onDrop={e => e.preventDefault()} />
+        <input type="date" min={date} max={date} ref={dataRef} disabled={disable} onKeyDown={e => e.preventDefault()} onPaste={e => e.preventDefault()} onDrop={e => e.preventDefault()} />
 
         <button className='addBtn' onClick={clickAdd}>Добавить</button>
       </div>
-    
+           
     </>
   )
 }

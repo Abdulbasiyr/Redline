@@ -53,7 +53,7 @@
   border: 1px solid #fff;
   /* box-shadow: -1px 1px 3px #e4e4e4; */
 }
-.colorCardWrapper .colorCard.green { background: linear-gradient(#36f310, #35fc45); }
+.colorCardWrapper .colorCard.green { background: linear-gradient(#0cdf28, #56fc35); }
 .colorCardWrapper .colorCard.yellow { background: linear-gradient(#cdf009, #d7fc35); }
 .colorCardWrapper .colorCard.red { background: linear-gradient( #fc3581, #f31010); }
 

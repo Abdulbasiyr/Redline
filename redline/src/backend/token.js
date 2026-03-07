@@ -39,7 +39,6 @@ export async function updatePage(req, res) {
   try {
 
     const token = req.cookies.refreshToken
-    console.log(token)
     if(!token) return res.status(401).json({success: false, message: 'unAuthorized'})
 
     const payload     = jwt.verify(token, process.env.REFRESH_TOKEN)
