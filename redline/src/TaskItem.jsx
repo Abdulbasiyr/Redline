@@ -21,18 +21,21 @@ const TaskItem = ({task, setEditCard, setActive, setShowMore, setDetailsCard, de
   return(
     
     <div className={`card ${task.color}`} data-create-color={task.createColor} data-color-card={task.color} ref={containerRef} data-id={id}>
-      <h3 className='title'>{task.title}</h3>
-      <p  className='text'>{task.text}</p>
+      <div className="colorCardWrapper"> <div className={`colorCard ${task.color}`}></div> </div> 
+      
+      <div className="textWrapper">
+        <h3 className='title'>{task.title}</h3>
+        <p  className='text'>{task.text}</p>
+      </div>
       <div className="wrapperStateCard">
-        <div className="dateTime"> <FiClock className='date-time-icon'/> {date} {time} </div>
-        <span className={`colorCard ${task.color}`}>{task.color}</span>
+        <div className="dateTime"> {date}</div>
       </div>
       <div className="more-buttons">
-        <button className="btn edit"  onClick={(e) => { setEditCard(true); setDetailsCard(e.currentTarget.closest('.card')); setActive(true)}}> <FiEdit/> </button>
+        <button className="btn edit"  onClick={(e) => { setEditCard(true); setDetailsCard(e.currentTarget.closest('.card')); setActive(true)}}> <FiEdit size={16}/> </button>
         <button className="show-more" onClick={(e) => {
           setShowMore(true) 
           setDetailsCard(e.currentTarget.closest('.card'))
-          }}> <FiChevronRight/> </button>
+          }}> <FiChevronRight size={18}/> </button>
       </div>
 
     </div>

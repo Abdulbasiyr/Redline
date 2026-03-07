@@ -2,22 +2,21 @@
 .card {
   position: relative;
   width: 400px;
-  height: 160px;
+  height: 100px;
   display: flex;
-  flex-direction: column;
+  /* flex-direction: column; */
   gap: 10px;
   padding: 10px 45px 5px 10px;
   backdrop-filter: blur(20px);
   background: rgba(255,255,255,0.15);
   border: 1px solid rgba(255,255,255,0.25);
   border-radius: 7px;
-  box-shadow: 0 10px 30px rgba(0,0,0,0.15), inset 0 1px 0 rgba(255,255,255,0.3);
-
+  box-shadow: 0 10px 30px rgba(0,0,0,0.15), inset 0 0 3px rgba(255, 255, 255, 0.534);
 
 }
-.card.green { border-left: 7px solid #00a700; }
+/* .card.green { border-left: 7px solid #00a700; }
 .card.yellow { border-left: 7px solid #d5ec00; }
-.card.red { border-left: 7px solid #a70000; }
+.card.red { border-left: 7px solid #a70000; } */
 
 .card h3 {
   color: #1a1a1a;
@@ -25,7 +24,8 @@
 }
 
 .text { 
-  height: 70px;
+  height: 50px;
+  width: 220px;
   display: -webkit-box;
   -webkit-box-orient: vertical;
   -webkit-line-clamp: 3;
@@ -37,34 +37,46 @@
   color: #1a1a1a;
 }
 
+.colorCardWrapper {
+  width: 70px;
+  height: 100%;
+  /* background-color: red; */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.colorCardWrapper .colorCard {
+  width: 30px;
+  height: 30px;
+  border-radius: 8px;
+  border: 1px solid #fff;
+  /* box-shadow: -1px 1px 3px #e4e4e4; */
+}
+.colorCardWrapper .colorCard.green { background: linear-gradient(#36f310, #35fc45); }
+.colorCardWrapper .colorCard.yellow { background: linear-gradient(#cdf009, #d7fc35); }
+.colorCardWrapper .colorCard.red { background: linear-gradient( #fc3581, #f31010); }
+
 .wrapperStateCard {
-  width: 100%;
-  padding-inline-end: 30px;
+  width: 80px;
   display: flex;
   align-items: center;
   justify-content: space-between;
-  /* background-color: red; */
   position: absolute;
-  left: 10px;
-  bottom: 10px; 
+  right: 4px;
+  bottom: 20px; 
+  text-shadow: 0 0 1px #fff;
 }
-
-.wrapperStateCard .colorCard {
-  padding-inline: 15px;
-  border-radius: 7px;
-  color: #fff;
-}
-.wrapperStateCard .colorCard.green { background-color: #1fbe1f; }
-.wrapperStateCard .colorCard.yellow { background-color: #d5ec00; }
-.wrapperStateCard .colorCard.red { background-color: #f03939; }
 
 .card .dateTime { 
   height: 20px;
-  color: #3b3b3b;
+  color: #ffffff;
+  font-weight: bold;
   display: flex;
   align-items: flex-end;
   gap: 5px;
   line-height: 1;
+  font-size: 15px;
 }
 
 .card .dateTime .date-time-icon {
@@ -75,15 +87,15 @@
 
 
 .more-buttons {
-  width: 70px;
-  height: 27px;
-  background-color: rgba(255, 255, 255, 0.2);
+  width: 80px;
+  height: 32px;
+  background: linear-gradient(135deg,rgba(146, 146, 146, 0.5),rgba(170, 170, 170, 0.5));
   display: flex;
   position: absolute;
-  top: 10px;
-  right: 10px;
+  top: 20px;
+  right: 5px;
   border-radius: 7px;
-  box-shadow: 0 2px 5px #7575756e;
+  box-shadow: inset 0 2px 5px #a8ecfdb9, inset 0 0 5px #fff;
 }
 .more-buttons button {
   width: 100%;
@@ -91,6 +103,10 @@
   border: none;
   cursor: pointer;
   transition: .1s ;
+  color: #fff;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 .more-buttons button:hover { background-color: rgba(255, 255, 255, 0.4); }
 
