@@ -1,9 +1,10 @@
+import { apiFetch } from "./apiFetch";
 
 
 // in registration or login
 export async function submitAuth(user) {
 
-  if( user.mode !== 'signup' || user.mode !== 'login') return
+  if( user.mode !== 'signup' || user.mode !== 'login') throw new Error('invalid auth mode')
 
   const url = user.mode === 'signup' ? '/api/auth/registerUser' : '/api/auth/loginUser'
 
@@ -13,35 +14,37 @@ export async function submitAuth(user) {
                     password: user.password
                   }
 
-  const res = await fetch( `${import.meta.env.VITE_API_URL}${url}`, {
-                method: 'POST',
-                credentials: 'include',
-                headers: {
-                  'Content-type': 'application/json'
-                },
-                body: JSON.stringify(payload)
-              })
 
-
-  const data = await res.json()
-
-  if(!res.ok) throw new Error(data.message || 'auth Error')
-
-  return data
+  return  apiFetch(url, {
+              method: 'POST',
+              headers: {
+                'Content-type': 'application/json'
+              },
+              body: JSON.stringify(payload)
+          })
 
 }
 
 
 // function for forgotPassword
 export async function sendResetPasswordEmail(payload) {
-  const res = await fetch(`${import.meta.env.VITE_API_URL}/api/auth/password-reset/request`, {
-                      method: 'POST',
-                      credentials: 'include',
-                      headers: {
-                        'Content-type': 'application/json'
-                      },
-                      body: JSON.stringify(payload)
-                    } )
+
+let res;
+
+try {
+
+  res = await fetch(`${import.meta.env.VITE_API_URL}/api/auth/password-reset/request`, {
+                method: 'POST',
+                credentials: 'include',
+                headers: {
+                  'Content-type': 'application/json'
+                },
+                body: JSON.stringify(payload)
+              } )
+
+} catch {
+  throw new Error('network error')
+}
 
   let data = null
 
@@ -66,14 +69,21 @@ export async function sendResetPasswordEmail(payload) {
 
 // verify code
 export async function verifyResetCode(payload) {
-  const res = await fetch(`${import.meta.env.VITE_API_URL}/api/auth/password-reset/verify`, {
-                      method: 'POST',
-                      credentials: 'include',
-                      headers: {
-                        'Content-type': 'application/json'
-                      },
-                      body: JSON.stringify(payload)
-                    })
+
+  let res;
+
+  try {
+    res = await fetch(`${import.meta.env.VITE_API_URL}/api/auth/password-reset/verify`, {
+                  method: 'POST',
+                  credentials: 'include',
+                  headers: {
+                    'Content-type': 'application/json'
+                  },
+                  body: JSON.stringify(payload)
+                })
+  } catch {
+    throw new Error('network error')
+  } 
 
   const data = await res.json()
   return data
@@ -82,6 +92,7 @@ export async function verifyResetCode(payload) {
 
 // Change reset password
 export async function confirmResetPassword(payload) {
+
   const res = await fetch(`${import.meta.env.VITE_API_URL}/api/auth/password-reset/confirm`, {
                 method: 'POST',
                 credentials: 'include',
@@ -97,11 +108,8 @@ export async function confirmResetPassword(payload) {
 
 // exit in account
 export async function logout() {
-  const res = await fetch(`${import.meta.env.VITE_API_URL}/api/auth/logout`, {
-                method: 'POST',
-                credentials: 'include'
-              })
-
-  const  data = await res.json()
-  return data
+  await fetch(`${import.meta.env.VITE_API_URL}/api/auth/logout`, {
+    method: 'POST',
+    credentials: 'include'
+  })
 }

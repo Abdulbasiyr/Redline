@@ -267,5 +267,5 @@ export async function logout(req, res) {
 
 
 
-  return res.status(200).json({success: true})
+  return res.status(200)
 }

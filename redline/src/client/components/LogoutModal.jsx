@@ -10,12 +10,18 @@ const LogoutModal = ({setIsLogoutOpen, setAccountActive}) => {
   const {setUser, user, setAccessToken, accessToken}   = useAuth()
 
   const handleLogout = async () => {
-    await logout()
-    console.log('jovob keli')
-    setUser('')
-    setAccessToken('')
-    setAccountActive(false)
-    navigate('/')
+
+    try {
+      await logout()
+      
+      setUser('')
+      setAccessToken('')
+      setAccountActive(false)
+      navigate('/')
+    } catch(err) {
+      console.log(err.message)
+    }
+
   }
 
  return(

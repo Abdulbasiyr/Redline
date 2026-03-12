@@ -12,15 +12,23 @@ export function AuthProvider({ children }) {
 
   useEffect(() => {
     ( async () => {
-      const data = await updatePage()
+      
+      let data
 
-      if (data.success) {
+      try {
+
+        data = await updatePage()
+        if(!data) return 
         setUser({data: data.user, settings: data.settings})
         setAccessToken(data.accessToken)
         setAccountActive(true)
-      } 
 
-      setLoading(false) 
+      } catch(err) {
+        console.log(err.message)
+      } finally {
+        setLoading(false) 
+      }
+
     })()
     
   }, [])

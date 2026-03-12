@@ -48,12 +48,12 @@ export async function updatePage(req, res) {
     const user = await prisma.user.findUnique({ where: {id: userId}, select: { id: true, name: true, email: true, createdAt: true } })
     const settings = await prisma.userSettings.findUnique({where: {userId: userId}, select: {language: true , startPage: true, confirmDelete: true}})
     
-    if(!user || !settings) return res.status(401).json({success: false, message: 'User or Settings Not Found'})
+    if(!user || !settings) return res.status(401).json({message: 'User or Settings Not Found'})
     
-    return res.json({success: true, accessToken, user, settings})
+    return res.json({accessToken, user, settings})
 
   } catch(err) {
     console.log(err.message)
-    res.status(401).json({success: false, message: 'invalidRefreshToken'})
+    res.status(401).json({message: 'invalidRefreshToken'})
   }
 }

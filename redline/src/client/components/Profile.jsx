@@ -20,7 +20,6 @@ const Profile = ({setSettingsProfile, settingsProfile, setProfile, settings, set
       <div className="avatar__profile"> <h3>S</h3> </div>
 
       <div className="prifleData">
-        {console.log(user)}
         <span>Name:  {user.data.name}</span>
         <span>Email: {user.data.email}</span>
         <span>Member Since: {user.data.createdAt.split('T')[0]}</span>
