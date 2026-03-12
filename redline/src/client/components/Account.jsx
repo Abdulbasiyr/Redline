@@ -1,6 +1,6 @@
 
 import { useState } from 'react'
-import './css/account.css'
+import '../styles/account.css'
 import {FiUser, FiSettings, FiLogOut} from 'react-icons/fi'
 import Profile from './Profile'
 import { useAuth } from './AuthContext'

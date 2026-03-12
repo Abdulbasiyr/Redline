@@ -1,6 +1,6 @@
 
 import { useEffect, useRef } from 'react'
-import './css/taskItem.css'
+import '../styles/taskItem.css'
 import { FiChevronRight, FiEdit, FiClock } from 'react-icons/fi'
 
 const TaskItem = ({task, setEditCard, setActive, setShowMore, setDetailsCard, detailsCard}) => {

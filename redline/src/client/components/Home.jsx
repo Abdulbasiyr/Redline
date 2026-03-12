@@ -1,7 +1,7 @@
 
-import Body from "./Body"
-import TaskAdd from "./TaskAdd"
-import Header from "./Header"
+import Body from "./Body.jsx"
+import TaskAdd from "./TaskAdd.jsx"
+import Header from "./Header.jsx"
 import PasswordForgot from "./PasswordForgot.jsx"
 
 import { useState } from "react"

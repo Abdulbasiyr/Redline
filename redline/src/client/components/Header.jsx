@@ -1,5 +1,5 @@
-import { useRef } from 'react'
-import './css/header.css'
+
+import '../styles/header.css'
 import { FiSearch, FiPlus } from 'react-icons/fi'
 import { useNavigate } from 'react-router-dom'
 

@@ -1,5 +1,5 @@
 import { createContext, useContext, useState, useEffect } from 'react'
-import { updatePage } from './server'
+import { updatePage } from '../api/user.js'
 
 const AuthContext = createContext()
 

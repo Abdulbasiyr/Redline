@@ -1,10 +1,9 @@
 
 import { useEffect, useMemo, useState } from 'react'
-import './css/taskAdd.css'
+import '../styles/taskAdd.css'
 import { useRef } from 'react'
-import { addTasks } from './server'
-import { updateTask } from './server.js'
-import { useAuth } from './AuthContext'
+import { addTasks, updateTask } from '../api/tasks.js'
+import { useAuth } from './AuthContext.jsx'
 
 
 const TaskAdd = ({setActive, active, setTasks, tasks, detailsCard, setEditCard, editCard}) => {

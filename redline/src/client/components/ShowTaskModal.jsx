@@ -1,7 +1,7 @@
 
-import { useAuth } from './AuthContext'
-import './css/showTaskModal.css'
-import { deleteTask, updateTask } from './server'
+import { useAuth } from './AuthContext.jsx'
+import '../styles/showTaskModal.css'
+import { deleteTask, updateTask } from '../api/tasks.js'
 import { FiTrash2, FiCalendar, FiCheckSquare } from 'react-icons/fi'
 
 const ShowTaskModal = ({setShowMore, detailsCard, setTasks}) => {

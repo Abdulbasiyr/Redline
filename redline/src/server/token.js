@@ -25,8 +25,8 @@ export function signResetToken(payload) {
 export function setRefreshCookie(res, refresh_token) {
   res.cookie('refreshToken', refresh_token, {
     httpOnly: true,
-    secure: true,
-    sameSite: 'none',
+    secure: false,
+    sameSite: 'lax',
     path: '/api/auth',
     maxAge: 30 * 24 * 60 * 60 * 1000
   })

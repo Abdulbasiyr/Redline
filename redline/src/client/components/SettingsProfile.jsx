@@ -1,10 +1,10 @@
 
 import { useState } from 'react'
-import './css/settingsProfile.css'
+import '../styles/settingsProfile.css'
 import ReactCountryFlag from 'react-country-flag'
 import { FiCheckSquare , FiEdit } from 'react-icons/fi'
-import { useAuth } from './AuthContext'
-import { profileSettings } from './server'
+import { useAuth } from './AuthContext.jsx'
+import { profileSettings } from '../api/user.js'
 
 const SettingsProfile = ({setSettingsProfile, setProfile, setSettings, settings}) => {
 

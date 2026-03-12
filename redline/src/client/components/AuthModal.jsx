@@ -1,8 +1,8 @@
 
 import {z} from 'zod'
-import { authenticateUser } from './server'
+import { submitAuth } from '../api/auth.js'
 import { useMemo, useState } from 'react'
-import './css/authModal.css'
+import '../styles/authModal.css'
 import { useSearchParams, useNavigate } from 'react-router-dom'
 import { FaGoogle } from 'react-icons/fa6'
 import { useAuth } from './AuthContext'
@@ -31,7 +31,6 @@ const AuthModal = ({setTasks}) => {
                 }, [searchParams])
 
   
-
   const submit = async (e) => {
     e.preventDefault()
     setErrorMessage('')
@@ -54,7 +53,7 @@ const AuthModal = ({setTasks}) => {
 
     // obrasheniya k serveru
     try {
-      const data = await authenticateUser(payload)
+      const data = await submitAuth(payload)
       setUser({data: data.user, settings: data.settings})
       setAccessToken(data.accessToken)
       setForm({name: '', email: '', password: ''})

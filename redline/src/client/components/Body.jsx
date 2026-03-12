@@ -1,10 +1,10 @@
-import './css/body.css'
-import TaskList from './TaskList'
-import FilterTabs from "./FilterTabs"
-import ShowTaskModal from './ShowTaskModal'
+import '../styles/body.css'
+import TaskList from './TaskList.jsx'
+import FilterTabs from "./FilterTabs.jsx"
+import ShowTaskModal from './ShowTaskModal.jsx'
 import { useState, useEffect } from 'react'
-import { useAuth } from './AuthContext'
-import { getTasks } from "./server"
+import { useAuth } from './AuthContext.jsx'
+import { getTasks } from "../api/tasks.js"
 
 
 

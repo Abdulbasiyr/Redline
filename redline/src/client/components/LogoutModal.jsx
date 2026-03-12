@@ -1,8 +1,8 @@
 
 import { useNavigate } from 'react-router-dom'
-import './css/logoutModal.css'
-import { logout } from './server'
-import { useAuth } from './AuthContext'
+import '../styles/logoutModal.css'
+import { logout } from '../api/auth.js'
+import { useAuth } from './AuthContext.jsx'
 
 const LogoutModal = ({setIsLogoutOpen, setAccountActive}) => {
 

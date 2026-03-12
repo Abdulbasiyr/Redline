@@ -1,5 +1,5 @@
 import { Route, Routes } from 'react-router-dom'
-import './app.css'
+import '../styles/app.css'
 import Home from './Home'
 import AuthModal from './AuthModal'
 import PasswordForgot from './PasswordForgot'

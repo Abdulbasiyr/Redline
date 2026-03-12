@@ -1,12 +1,12 @@
 
 import { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
-import './css/passwordForgot.css'
+import '../styles/passwordForgot.css'
 import { FiArrowLeft } from 'react-icons/fi'
-import { confirmResetPassword, sendResetPasswordEmail, verifyResetCode } from './server'
+import { confirmResetPassword, sendResetPasswordEmail, verifyResetCode } from '../api/auth.js'
 import {z} from 'zod'
 
-const PasswordForgot = () => {
+const PasswordForgot = () => { 
 
   const navigate = useNavigate()
   const maxLength = 6

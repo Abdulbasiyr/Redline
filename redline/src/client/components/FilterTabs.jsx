@@ -1,5 +1,5 @@
 
-import './css/filterTabs.css'
+import '../styles/filterTabs.css'
 import { useMemo } from 'react'
 
 
