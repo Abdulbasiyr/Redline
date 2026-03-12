@@ -28,14 +28,17 @@ const PasswordForgot = () => {
     setValue(cleaned)
 
     if(cleaned.length === 6) { 
-      console.log(email, cleaned)    
-      const data = await verifyResetCode({email, code: cleaned}) 
-      if(!data.success) return setMessage(data.message)
 
-      setIsResetToken(data.resetToken)
-      setVerification('password')
+      try {
+        const data = await verifyResetCode({email, code: cleaned}) 
+        if(!data) return setMessage('Error verify') 
 
-      console.log('maxlength:', true)
+        setIsResetToken(data.resetToken)
+        setVerification('password')
+      } catch(err) {
+        setMessage(err.message)
+      }
+
     }
 
   }
@@ -57,7 +60,6 @@ const PasswordForgot = () => {
       return
     }
     setUserEmail(data.email)
-    console.log(data)
 
     if(!data.success) return setMessage(data.message)  
     
@@ -71,15 +73,18 @@ const PasswordForgot = () => {
 
     const pasShema = z.object({ password: z.string().trim().min(7) })
     const parsed = pasShema.safeParse({password: resetPassword}) 
-    if(!parsed.success){ return console.log(parsed.error.issues[0].message), setMessage('Invalid password') }
+    if(!parsed.success) return setMessage('Invalid password') 
 
-    const data = await confirmResetPassword({email, password: parsed.data.password, resetToken: isResetToken})
-    if(!data?.success) { return console.log('choto neto', data), setMessage(data?.message), setIsSaving(false) }
-    console.log(data)
+    try {
 
-    navigate('/auth?mode=login')
+      await confirmResetPassword({email, password: parsed.data.password, resetToken: isResetToken})
+      navigate('/auth?mode=login')
+
+    } catch(err) {
+      setMessage(err.message)
+      setIsSaving(false)
+    } 
   }
-
 
   
   return(

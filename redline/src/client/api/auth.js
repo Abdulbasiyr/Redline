@@ -70,23 +70,15 @@ try {
 // verify code
 export async function verifyResetCode(payload) {
 
-  let res;
 
-  try {
-    res = await fetch(`${import.meta.env.VITE_API_URL}/api/auth/password-reset/verify`, {
-                  method: 'POST',
-                  credentials: 'include',
-                  headers: {
-                    'Content-type': 'application/json'
-                  },
-                  body: JSON.stringify(payload)
-                })
-  } catch {
-    throw new Error('network error')
-  } 
+  return apiFetch('/api/auth/password-reset/verify', {
+            method: 'POST',
+            headers: {
+              'Content-type': 'application/json'
+            },
+            body: JSON.stringify(payload)
+         })
 
-  const data = await res.json()
-  return data
 }
 
 
@@ -101,8 +93,15 @@ export async function confirmResetPassword(payload) {
                 },
                 body: JSON.stringify(payload)
               })
-  const data = await res.json()
-  return data
+  let data;
+  try {
+    data = await res.json()
+  } catch {
+    data = null
+  }
+
+  if(!res.ok) throw new Error(data?.message || 'Request failed')
+
 }
 
 

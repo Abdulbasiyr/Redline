@@ -185,33 +185,33 @@ export async function passwordResetRequest(req, res) {
 export async function confirmResetCode(req, res) {
   const codeSchema = z.object({ email: z.string().trim().toLowerCase().email(), code: z.string().trim().regex(/^\d{6}$/) })
   const parsed = codeSchema.safeParse(req.body)
-  if(!parsed.success) return res.status(400).json({success: false, message: 'Invalid code'})
+  if(!parsed.success) return res.status(400).json({message: 'Invalid code'})
 
   const { email, code } = parsed.data
   try {
 
     const user = await prisma.user.findUnique({where: {email}, select: {id: true}})
-    if(!user) return res.status(400).json({success: false, message: 'Invalid code'})
+    if(!user) return res.status(400).json({message: 'Invalid code'})
 
     const row = await prisma.passwordResetToken.findFirst({where: {userId: user.id, used: false, code}, orderBy: {expiresAt: 'desc'}, select: {id: true, expiresAt: true}})
-    if(!row) return res.status(400).json({success: false, message: 'Invalid code'})
+    if(!row) return res.status(400).json({message: 'Invalid code'})
 
-    if(row.expiresAt < new Date()) return res.status(400).json({success: false, message: 'Code expired'})
+    if(row.expiresAt < new Date()) return res.status(400).json({message: 'Code expired'})
 
     const resetToken = signResetToken({userId: user.id, resetId: row.id})
     
-    return res.json({success: true, resetToken})
+    return res.json({resetToken})
 
   } catch(err) {
     console.log(err)
-    res.status(500).json({success: false, message: 'Server Error'})
+    res.status(500).json({message: 'Server Error'})
   }
 }
 
 
 // confirm reset password
 export async function resetPassword(req, res) {
-  console.log('reset start')
+
   
   const resetPasShema = z.object({
     password: z.string().trim().min(7),
@@ -219,22 +219,22 @@ export async function resetPassword(req, res) {
   })
 
   const parsed = resetPasShema.safeParse(req.body)
-  if(!parsed.success) return res.status(400).json({success: false, message: 'Invalid password'})
+  if(!parsed.success) return res.status(400).json({message: 'Invalid password'})
 
   const { password, resetToken } = parsed.data
   
-  console.log('after parse pass')
+
   try {
 
   const payload = jwt.verify(resetToken, process.env.RESET_TOKEN)
   const { userId, resetId } = payload
 
   const token = await prisma.passwordResetToken.findFirst({where: {id: resetId, userId, used: false} })
-  if(!token) return res.status(400).json({success: false, message: 'Invalid password'})
-  if(token.expiresAt < new Date()) return res.status(400).json({success: false, message: 'Invalid password'})
+  if(!token) return res.status(400).json({message: 'Invalid password'})
+  if(token.expiresAt < new Date()) return res.status(400).json({message: 'Invalid password'})
 
   const passwordHash = await bcrypt.hash(password, 10)
-  console.log('continue...')
+
   await prisma.$transaction(async (tx) => {
     await tx.user.update({where: {id: userId}, data: {passwordHash}, select: {id: true, email: true, createdAt: true}})
 
@@ -243,13 +243,12 @@ export async function resetPassword(req, res) {
 
     return 
   })
-  console.log('success')
 
 
-  return res.status(200).json({success: true})
+  return res.status(200)
   } catch(err) {
     console.log(err)
-    return res.status(500).json({success: false, message: 'Server error'})
+    return res.status(500).json({message: 'Server error'})
   }
 
 }
