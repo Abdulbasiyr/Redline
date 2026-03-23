@@ -21,7 +21,7 @@ const Header = ({setActive, accountActive, setSearch, search}) => {
           <div className="register__headerMenu">
             { !accountActive ? <button className='authHeader'   onClick={() => { navigate('/auth?mode=login');  } }> Login </button> : null }
             { !accountActive ? <button className='authHeader'   onClick={() => { navigate('/auth?mode=signup');  } }> Sign up </button> : null }
-         </div>
+          </div>
           <button className="btnAddHeader" onClick={() => setActive(true)}> <FiPlus size={18}/> <span className="text__addHeader">add</span>  </button>    
         </div>
       </header>
