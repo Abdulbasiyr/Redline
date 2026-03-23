@@ -1,4 +1,5 @@
 
+import { useState } from 'react'
 import '../styles/header.css'
 import { FiSearch, FiPlus } from 'react-icons/fi'
 import { useNavigate } from 'react-router-dom'
@@ -7,6 +8,7 @@ import { useNavigate } from 'react-router-dom'
 const Header = ({setActive, accountActive, setSearch, search}) => {
               
   const navigate = useNavigate()
+  const [isLine, setIsLine] = useState(false)
 
   return(
     <>
@@ -23,6 +25,11 @@ const Header = ({setActive, accountActive, setSearch, search}) => {
             { !accountActive ? <button className='authHeader'   onClick={() => { navigate('/auth?mode=signup');  } }> Sign up </button> : null }
           </div>
           <button className="btnAddHeader" onClick={() => setActive(true)}> <FiPlus size={18}/> <span className="text__addHeader">add</span>  </button>    
+        </div>
+
+        <div className={isLine ? 'lineWrapper active' : 'lineWrapper'} onClick={() => setIsLine(prev => !prev)} >
+          <div className="line top"></div>
+          <div className="line bottom"></div>
         </div>
       </header>
 
