@@ -44,15 +44,17 @@ header {
   .titleHeader {
     font-size: 20px;
   }
-  
-  .headerMenu {
-    width: 100px;
-    display: none;
+
+  .headerMenu .register__headerMenu {
     background-color: red;
+    display: none;
   }
 
   .headerMenu .btnAddHeader {
-    padding: 7px 10px;
+    position: fixed;
+    bottom: 40px;
+    right: -20px;
+    padding: 10px 14px;
     font-size: 14px;
     margin-right: 60px;
   }
@@ -74,11 +76,9 @@ header {
 
 
 .headerMenu .btnAddHeader{
-  /* background-color: #3b82f6; */
   display: flex;
   align-items: center;
   gap: 5px;
-
   background: linear-gradient(135deg,#1183fd,#22adfd);
   box-shadow: 0 0 10px rgba(79,163,255,0.6), 0 0 30px rgba(79,163,255,0.3), 0 5px 7px #6666666e;
 
@@ -107,11 +107,12 @@ input::placeholder { color: #fff; }
 
 @media (max-width: 360px) {
   input {
-    width: 150px;
+    width: 180px;
     height: 30px;
     border-radius: 5px;
     margin-left: 10px;
     padding: 10px 27px 10px 10px;
+    font-size: 14px;
   }
 }
 
