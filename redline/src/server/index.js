@@ -4,8 +4,6 @@ import cookieParser from 'cookie-parser';
 import { loginUser, registerUser, requireAuth, logout, rateLimiter, passwordResetRequest, confirmResetCode, confirmCodeLimiter, resetPassword} from './auth.js';
 import { updatePage } from './token.js';
 import taskRoutes from './tasks.routes.js'
-import prisma from './prisma.js';
-import z from 'zod';
 import { settings } from './settings.js';
 
 const app  = express()
