@@ -1,10 +1,10 @@
 import express from 'express';
 import cors from 'cors'
 import cookieParser from 'cookie-parser';
-import { loginUser, registerUser, requireAuth, logout, rateLimiter, passwordResetRequest, confirmResetCode, confirmCodeLimiter, resetPassword} from './auth.js';
-import { updatePage } from './token.js';
-import taskRoutes from './tasks.routes.js'
-import { settings } from './settings.js';
+import { loginUser, registerUser, requireAuth, logout, rateLimiter, passwordResetRequest, confirmResetCode, confirmCodeLimiter, resetPassword} from './src/auth.js';
+import { updatePage } from './src/token.js';
+import taskRoutes from './src/tasks.routes.js'
+import { settings } from './src/settings.js';
 
 const app  = express()
 const PORT = process.env.PORT || 3000

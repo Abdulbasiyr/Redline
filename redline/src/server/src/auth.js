@@ -1,6 +1,6 @@
 import bcrypt from 'bcrypt'
 import crypto from 'crypto'
-import prisma from './prisma.js'
+import prisma from '../lib/prisma.js'
 import { z } from 'zod'
 import jwt  from 'jsonwebtoken'
 import { signAccessToken, signRefreshToken, setRefreshCookie, signResetToken } from './token.js'

@@ -1,5 +1,5 @@
 import jwt from "jsonwebtoken"
-import prisma from "./prisma.js"
+import prisma from "../lib/prisma.js"
 
 // uztanovka accesToken
 export function signAccessToken(payload) {
