@@ -1,4 +1,4 @@
-import { apiFetch } from "./apiFetch"
+import { apiFetch } from "./apiFetch.api.js"
 
 
 // when reload page
@@ -14,7 +14,6 @@ export async function profileSettings(obj) {
   return  apiFetch('/api/user/settings', {
             method: 'PATCH',
             headers: {
-              'Content-Type': 'application/json',
               'Authorization': `Bearer ${accessToken}`
             },
             body: JSON.stringify(payload)

@@ -1,4 +1,4 @@
-import { apiFetch } from "./apiFetch";
+import { apiFetch } from "./apiFetch.api.js";
 
 
 // in registration or login
@@ -17,9 +17,6 @@ export async function submitAuth(user) {
 
   return  apiFetch(url, {
               method: 'POST',
-              headers: {
-                'Content-type': 'application/json'
-              },
               body: JSON.stringify(payload)
           })
 

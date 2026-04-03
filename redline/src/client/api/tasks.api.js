@@ -1,4 +1,4 @@
-import { apiFetch } from "./apiFetch"
+import { apiFetch } from "./apiFetch.api.js"
 
 
 // get tasks
@@ -22,8 +22,7 @@ export async function addTasks(datas) {
   return  apiFetch('/api/tasks/add', {
             method: 'POST',
             headers: {
-              'Authorization': `Bearer ${accessToken}`,
-              'Content-type': 'application/json'
+              'Authorization': `Bearer ${accessToken}`
             },
             body: JSON.stringify(payload)
   })
@@ -38,8 +37,7 @@ export async function updateTask(datas) {
   return  apiFetch(`/api/tasks/update/${id}`, {
             method: 'PATCH',
             headers: {
-              'Authorization': `Bearer ${accessToken}`,
-              'Content-type': 'application/json'
+              'Authorization': `Bearer ${accessToken}`
             },
             body: JSON.stringify(payload)
   })
@@ -54,8 +52,7 @@ export async function deleteTask(datas) {
   return apiFetch(`/api/tasks/delete/${id}`, {
             method: 'DELETE',
             headers: {
-              'Authorization': `Bearer ${accessToken}`,
-              'Content-type': 'application/json'
+              'Authorization': `Bearer ${accessToken}`
             }
   } )
 

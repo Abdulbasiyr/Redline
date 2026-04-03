@@ -1,5 +1,5 @@
 import { Router } from "express"
-import { apiAddTasks, apiDeleteTask, apiGetTasks, apiPatchTask } from "./tasks.js"
+import { apiAddTasks, apiDeleteTask, apiGetTasks, apiPatchTask } from "../tasks.js"
 
 const router = Router()
 

@@ -1,10 +1,10 @@
 import express from 'express';
 import cors from 'cors'
 import cookieParser from 'cookie-parser';
-import { loginUser, registerUser, requireAuth, logout, rateLimiter, passwordResetRequest, confirmResetCode, confirmCodeLimiter, resetPassword} from './src/auth.js';
-import { updatePage } from './src/token.js';
-import taskRoutes from './src/tasks.routes.js'
+import taskRoutes from './src/routes/tasks.routes.js'
 import { settings } from './src/settings.js';
+import { requireAuth } from './src/auth.js';
+import authRouter from './src/routes/auth.router.js'
 
 const app  = express()
 const PORT = process.env.PORT || 3000
@@ -17,17 +17,13 @@ app.use(cors({
   credentials: true
 }))
 
-app.post('/api/auth/registerUser', registerUser)
-app.post('/api/auth/loginUser', loginUser)
-app.post('/api/auth/refresh', updatePage)
+
 
 app.patch('/api/user/settings', requireAuth, settings)
 
+app.use('/api/auth', authRouter)
 app.use('/api/tasks', requireAuth, taskRoutes)
-app.post('/api/auth/logout', logout)
-app.post('/api/auth/password-reset/request', rateLimiter, passwordResetRequest )
-app.post('/api/auth/password-reset/verify', confirmCodeLimiter, confirmResetCode)
-app.post('/api/auth/password-reset/confirm', resetPassword)
+
 
 app.listen(PORT, () => {
   console.log(`http://localhost:${PORT}`)
