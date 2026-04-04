@@ -1,6 +1,6 @@
 
 import {z} from 'zod'
-import { submitAuth } from '../api/auth.js'
+import { submitAuth } from '../api/auth.api.js'
 import { useMemo, useState } from 'react'
 import '../styles/authModal.css'
 import { useSearchParams, useNavigate } from 'react-router-dom'

@@ -2,7 +2,7 @@
 import { useEffect, useMemo, useState } from 'react'
 import '../styles/taskAdd.css'
 import { useRef } from 'react'
-import { addTasks, updateTask } from '../api/tasks.js'
+import { addTasks, updateTask } from '../api/tasks.api.js'
 import { useAuth } from './AuthContext.jsx'
 
 

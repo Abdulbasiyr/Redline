@@ -4,7 +4,7 @@ import FilterTabs from "./FilterTabs.jsx"
 import ShowTaskModal from './ShowTaskModal.jsx'
 import { useState, useEffect } from 'react'
 import { useAuth } from './AuthContext.jsx'
-import { getTasks } from "../api/tasks.js"
+import { getTasks } from "../api/tasks.api.js"
 
 
 

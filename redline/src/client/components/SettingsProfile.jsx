@@ -4,7 +4,7 @@ import '../styles/settingsProfile.css'
 import ReactCountryFlag from 'react-country-flag'
 import { FiCheckSquare , FiEdit } from 'react-icons/fi'
 import { useAuth } from './AuthContext.jsx'
-import { profileSettings } from '../api/user.js'
+import { profileSettings } from '../api/user.api.js'
 
 const SettingsProfile = ({setSettingsProfile, setProfile, setSettings, settings}) => {
 

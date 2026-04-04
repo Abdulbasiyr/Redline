@@ -3,7 +3,7 @@ import { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import '../styles/passwordForgot.css'
 import { FiArrowLeft } from 'react-icons/fi'
-import { confirmResetPassword, sendResetPasswordEmail, verifyResetCode } from '../api/auth.js'
+import { confirmResetPassword, sendResetPasswordEmail, verifyResetCode } from '../api/auth.api.js'
 import {z} from 'zod'
 
 const PasswordForgot = () => { 
